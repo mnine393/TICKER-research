@@ -12,7 +12,7 @@ import statistics
 # -----------------------------------------------------------------------------
 TARGET = {
     "ticker": "ABG",
-    "name": "Asbury",
+    "name": "Asbury Automotive Group",
     "price": 243.03,  # USD per share as of December 31, 2024
     "diluted_eps": 21.50,  # USD per share, FY2024 total GAAP diluted EPS
 }

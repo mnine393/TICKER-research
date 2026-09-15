@@ -87,8 +87,8 @@ Peer Multiples (Price / Diluted EPS):
 
 Usable peers: 2
 Peer median P/E: 10.743987x
-Asbury peer-implied range: $215.81 - $246.18
-Asbury at peer median:     $231.00
+Asbury Automotive Group peer-implied range: $215.81 - $246.18
+Asbury Automotive Group at peer median:     $231.00
 
 Leave-One-Peer-Out Sensitivity:
   Remove AN: remaining GPI estimate = $246.18 (change from full-peer estimate: +15.18)
