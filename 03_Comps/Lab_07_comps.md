@@ -135,3 +135,4 @@ Leave-One-Peer-Out Sensitivity:
 In Lab 08, when applying comparable multiples to Tesla:
 * We cannot compare Tesla to legacy automotive OEMs (trading at 6–10× P/E) or pure software hyperscalers (trading at 30–45× P/E) without an explicit, source-supported peer-selection policy.
 * Because Tesla’s market price ($356.09) is 9.0× its fundamental DCF value ($39.74), observing peer dispersion will be central to determining whether the market prices Tesla as an automotive manufacturer or a software monopoly.
+

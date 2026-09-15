@@ -1,4 +1,4 @@
-"""Lab 07: Comparable-Company P/E Valuation Engine — Asbury Automotive (ABG) Case.
+"""Lab 07: Comparable-Company P/E Valuation Engine.
 
 Uses only Python's standard library — no external packages required.
 Calculates peer P/E multiples, peer median P/E, peer-implied target prices,
@@ -6,14 +6,13 @@ and leave-one-out peer sensitivity with full unrounded floating precision.
 """
 
 import statistics
-import sys
 
 # -----------------------------------------------------------------------------
 # Input Block (edit target and candidate peer inputs by hand)
 # -----------------------------------------------------------------------------
 TARGET = {
     "ticker": "ABG",
-    "name": "Asbury Automotive Group",
+    "name": "Asbury",
     "price": 243.03,  # USD per share as of December 31, 2024
     "diluted_eps": 21.50,  # USD per share, FY2024 total GAAP diluted EPS
 }
@@ -39,21 +38,47 @@ def run_comparables_analysis(target, candidate_peers):
     print("=" * 68)
     print("LAB 07: COMPARABLE-COMPANY P/E VALUATION ENGINE")
     print("=" * 68)
-    print(f"Target: {target['name']} ({target['ticker']})")
-    print(f"December 31, 2024 Closing Price: ${target['price']:.2f}")
-    print(f"FY2024 Total GAAP Diluted EPS:   ${target['diluted_eps']:.2f}")
+
+    # Dynamic target name/ticker handling
+    target_name = target.get("name")
+    target_ticker = target.get("ticker", "").strip().upper()
+    target_label = target_name if target_name else (target_ticker if target_ticker else "Target")
+
+    if target_name and target_ticker:
+        target_header = f"{target_name} ({target_ticker})"
+    else:
+        target_header = target_label
+
+    # Safe validation of target price and diluted EPS before formatting
+    t_price = target.get("price")
+    t_eps = target.get("diluted_eps")
+
+    if isinstance(t_price, (int, float)) and t_price > 0:
+        price_display = f"${t_price:.2f}"
+    else:
+        price_display = "not meaningful"
+
+    if isinstance(t_eps, (int, float)) and t_eps > 0:
+        eps_display = f"${t_eps:.2f}"
+        valid_target_eps = True
+    else:
+        eps_display = "not meaningful"
+        valid_target_eps = False
+
+    print(f"Target: {target_header}")
+    print(f"December 31, 2024 Closing Price: {price_display}")
+    print(f"FY2024 Total GAAP Diluted EPS:   {eps_display}")
     print("-" * 68)
 
     # 1. Deduplicate peers and exclude target
     seen_tickers = set()
     cleaned_peers = []
-    target_ticker = target["ticker"].strip().upper()
 
     for peer in candidate_peers:
         ticker = peer.get("ticker", "").strip().upper()
         if not ticker:
             continue
-        if ticker == target_ticker:
+        if target_ticker and ticker == target_ticker:
             print(f"[Excluded] Peer matches target ticker '{ticker}'.")
             continue
         if ticker in seen_tickers:
@@ -66,11 +91,18 @@ def run_comparables_analysis(target, candidate_peers):
     valid_peers = []
     print("\nPeer Multiples (Price / Diluted EPS):")
     for peer in cleaned_peers:
+        p_name = peer.get("name", "Peer")
+        p_ticker = peer.get("ticker", "PEER").strip().upper()
         price = peer.get("price")
         eps = peer.get("diluted_eps")
 
-        if price is None or eps is None or price <= 0 or eps <= 0:
-            print(f"  {peer['name']} ({peer['ticker']}): not meaningful (Price: {price}, EPS: {eps})")
+        if (
+            not isinstance(price, (int, float))
+            or not isinstance(eps, (int, float))
+            or price <= 0
+            or eps <= 0
+        ):
+            print(f"  {p_name} ({p_ticker}): not meaningful (Price: {price}, EPS: {eps})")
             continue
 
         pe_multiple = price / eps
@@ -78,17 +110,12 @@ def run_comparables_analysis(target, candidate_peers):
         peer_entry["pe"] = pe_multiple
         valid_peers.append(peer_entry)
         print(
-            f"  {peer['name']} ({peer['ticker']}) P/E: {pe_multiple:.6f}x "
+            f"  {p_name} ({p_ticker}) P/E: {pe_multiple:.6f}x "
             f"(Price: ${price:.2f}, EPS: ${eps:.2f})"
         )
 
     num_valid = len(valid_peers)
     print(f"\nUsable peers: {num_valid}")
-
-    target_eps = target.get("diluted_eps")
-    if target_eps is None or target_eps <= 0:
-        print("Error: Target diluted EPS is missing or nonpositive; implied calculations not meaningful.")
-        return
 
     if num_valid == 0:
         print("Result: no usable peers.")
@@ -99,20 +126,29 @@ def run_comparables_analysis(target, candidate_peers):
     median_pe = statistics.median(pe_list)
     print(f"Peer median P/E: {median_pe:.6f}x")
 
-    full_median_implied_price = median_pe * target_eps
+    if not valid_target_eps:
+        print(f"\nResult: not meaningful ({target_label} diluted EPS is {eps_display}).")
+        if num_valid == 1:
+            print(f"{target_label} reference estimate: not meaningful")
+        else:
+            print(f"{target_label} peer-implied range: not meaningful")
+            print(f"{target_label} at peer median:     not meaningful")
+        return
+
+    full_median_implied_price = median_pe * t_eps
 
     if num_valid == 1:
         print(
-            f"Asbury reference estimate: ${full_median_implied_price:.2f} "
+            f"{target_label} reference estimate: ${full_median_implied_price:.2f} "
             f"(one valid peer; no range)"
         )
     else:
         min_pe = min(pe_list)
         max_pe = max(pe_list)
-        min_implied_price = min_pe * target_eps
-        max_implied_price = max_pe * target_eps
-        print(f"Asbury peer-implied range: ${min_implied_price:.2f} - ${max_implied_price:.2f}")
-        print(f"Asbury at peer median:     ${full_median_implied_price:.2f}")
+        min_implied_price = min_pe * t_eps
+        max_implied_price = max_pe * t_eps
+        print(f"{target_label} peer-implied range: ${min_implied_price:.2f} - ${max_implied_price:.2f}")
+        print(f"{target_label} at peer median:     ${full_median_implied_price:.2f}")
 
     # 4. Leave-one-out sensitivity analysis
     print("\nLeave-One-Peer-Out Sensitivity:")
@@ -126,7 +162,7 @@ def run_comparables_analysis(target, candidate_peers):
 
         rem_pe_list = [p["pe"] for p in remaining]
         rem_median_pe = statistics.median(rem_pe_list)
-        rem_implied_price = rem_median_pe * target_eps
+        rem_implied_price = rem_median_pe * t_eps
         dollar_change = rem_implied_price - full_median_implied_price
 
         if len(remaining) == 1:
