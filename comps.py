@@ -1,4 +1,4 @@
-"""Lab 07: Comparable-Company P/E Valuation Engine.
+"""Lab 08: Comparable-Company P/E Valuation Engine — Tesla, Inc. (TSLA) Triangulation.
 
 Uses only Python's standard library — no external packages required.
 Calculates peer P/E multiples, peer median P/E, peer-implied target prices,
@@ -11,24 +11,24 @@ import statistics
 # Input Block (edit target and candidate peer inputs by hand)
 # -----------------------------------------------------------------------------
 TARGET = {
-    "ticker": "ABG",
-    "name": "Asbury Automotive Group",
-    "price": 243.03,  # USD per share as of December 31, 2024
-    "diluted_eps": 21.50,  # USD per share, FY2024 total GAAP diluted EPS
+    "ticker": "TSLA",
+    "name": "Tesla",
+    "price": 356.09,  # USD per share, Nasdaq closing price as of September 1, 2026
+    "diluted_eps": 1.08,  # USD per share, FY2025 total GAAP diluted EPS (Form 10-K)
 }
 
 PEERS = [
     {
-        "ticker": "AN",
-        "name": "AutoNation",
-        "price": 169.84,  # USD per share as of December 31, 2024
-        "diluted_eps": 16.92,  # USD per share, FY2024 total GAAP diluted EPS
+        "ticker": "GM",
+        "name": "General Motors",
+        "price": 49.78,  # USD per share, NYSE closing price as of September 1, 2026
+        "diluted_eps": 3.27,  # USD per share, FY2025 total GAAP diluted EPS (Form 10-K)
     },
     {
-        "ticker": "GPI",
-        "name": "Group 1 Automotive",
-        "price": 421.48,  # USD per share as of December 31, 2024
-        "diluted_eps": 36.81,  # USD per share, FY2024 total GAAP diluted EPS
+        "ticker": "F",
+        "name": "Ford Motor Company",
+        "price": 10.50,  # USD per share, NYSE closing price as of September 1, 2026
+        "diluted_eps": -2.06,  # USD per share, FY2025 total GAAP diluted EPS (Form 10-K, net loss)
     },
 ]
 
@@ -36,7 +36,7 @@ PEERS = [
 def run_comparables_analysis(target, candidate_peers):
     """Execute P/E comparison, implied valuation, and leave-one-out sensitivity."""
     print("=" * 68)
-    print("LAB 07: COMPARABLE-COMPANY P/E VALUATION ENGINE")
+    print("LAB 08: COMPARABLE-COMPANY P/E VALUATION ENGINE")
     print("=" * 68)
 
     # Dynamic target name/ticker handling
@@ -66,8 +66,8 @@ def run_comparables_analysis(target, candidate_peers):
         valid_target_eps = False
 
     print(f"Target: {target_header}")
-    print(f"December 31, 2024 Closing Price: {price_display}")
-    print(f"FY2024 Total GAAP Diluted EPS:   {eps_display}")
+    print(f"September 1, 2026 Closing Price: {price_display}")
+    print(f"FY2025 Total GAAP Diluted EPS:   {eps_display}")
     print("-" * 68)
 
     # 1. Deduplicate peers and exclude target
@@ -102,7 +102,9 @@ def run_comparables_analysis(target, candidate_peers):
             or price <= 0
             or eps <= 0
         ):
-            print(f"  {p_name} ({p_ticker}): not meaningful (Price: {price}, EPS: {eps})")
+            price_str = f"${price:.2f}" if isinstance(price, (int, float)) else str(price)
+            eps_str = f"${eps:.2f}" if isinstance(eps, (int, float)) else str(eps)
+            print(f"  {p_name} ({p_ticker}): not meaningful (Price: {price_str}, EPS: {eps_str})")
             continue
 
         pe_multiple = price / eps
