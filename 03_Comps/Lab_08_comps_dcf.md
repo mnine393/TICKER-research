@@ -14,18 +14,17 @@
 > **What would Tesla's share be worth at defensible peer P/E multiples, why does its observed trading multiple (329.71×) diverge so significantly from both its DCF (\$39.74) and peer benchmarks, and how does that comparison inform an investment initiation decision?**
 
 ### How Tesla Earns Money (FY2025 Form 10-K Primary Evidence)
-Tesla operates across three primary business activities, with an additional high-valuation speculative layer:
-1. **Automotive Segment (\$69,526M revenue / 73.3% of total revenue):**  
+Tesla operates through **two reportable segments**, with an additional high-valuation speculative layer ([Item 8, Note 16—Segment Reporting and Information about Geographic Areas, pp. 92–93](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm)):
+1. **Automotive Segment (\$82,056M combined revenue / 86.5% of total revenue):**  
    * Designs, manufactures, sells, and leases pure battery electric passenger vehicles (Model 3, Model Y, Model S, Model X, Cybertruck) and commercial Semi trucks.  
    * Operates a direct-to-consumer sales and service infrastructure without third-party franchised dealers.  
-   * Earns zero-cost **automotive regulatory credits of \$1,993M** from traditional OEMs failing to satisfy governmental emissions mandates ([Tesla 2025 Form 10-K, Item 8, Consolidated Statements of Operations, p. 50](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm)).
-2. **Energy Generation and Storage (\$12,771M revenue / 13.5% of total revenue):**  
+   * Earns zero-cost **automotive regulatory credits of \$1,993M** from traditional OEMs failing to satisfy governmental emissions mandates ([Item 8, Consolidated Statements of Operations, p. 50](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm)).  
+   * Includes a **Services and Other sub-line (\$12,530M / 13.2% of total revenue):** the global Supercharger fast-charging network, non-warranty maintenance, collision repair, automotive insurance, parts, and retail merchandise—reported within the Automotive segment, not separately.
+2. **Energy Generation and Storage Segment (\$12,771M revenue / 13.5% of total revenue):**  
    * Deploys utility-scale stationary energy storage (**Megapack**) and residential/commercial systems (**Powerwall**).  
    * Grew **26.6% year-over-year** in 2025 (up from \$10,086M in 2024), deploying **46.7 GWh** of storage capacity ([Item 7, MD&A—2025 Highlights, p. 31](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm)).
-3. **Services and Other (\$12,530M revenue / 13.2% of total revenue):**  
-   * Operates the global Supercharger fast-charging network, non-warranty maintenance services, collision repair facilities, automotive insurance business, part sales, and retail merchandise ([Item 8, Note 16—Segment Reporting and Information about Geographic Areas, p. 97](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm)).
-4. **Autonomous Software & Robotics Development (Option Value):**  
-   * Invests in AI compute clusters, Full Self-Driving (FSD) neural networks, Robotaxi/Cybercab fleet platforms, and Optimus humanoid robotics ([Item 7, MD&A—2026 Outlook, pp. 31–32](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm)). Commercial monetization from autonomous transport is not yet recorded as operating revenue in audited financial statements.
+3. **Autonomous Software & Robotics Development (Option Value — not a reportable segment):**  
+   * Invests in AI compute clusters, Full Self-Driving (FSD) neural networks, Robotaxi/Cybercab fleet platforms, and Optimus humanoid robotics ([Item 7, MD&A—2026 Outlook, pp. 31–32](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm)). Revenue from Robotaxi operations is not separately disclosed in the audited financial statements.
 
 ### Are Tesla's Reported Annual Earnings Positive?
 * **Yes.** For the fiscal year ended December 31, 2025, Tesla reported **GAAP Net Income Attributable to Common Stockholders of \$3,794 million** ([Item 8, Consolidated Statements of Operations, p. 50](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm)).
@@ -141,7 +140,7 @@ Leave-One-Peer-Out Sensitivity:
 | :--- | :---: | :--- |
 | **Week 3 DCF Model** | **\$39.74** | **Forecast & Discount Assumptions:** Starting FCFF of \$6,433.27M; explicit growth fading from 8% to 3%; WACC of 10.0%; terminal growth of 3.0%. **DCF Sensitivity Range: \$34.06 to \$54.60** (across WACC 9.0%–11.0% and $g$ 2.0%–4.0%). Reverse DCF shows that reaching \$356.09 would require an aggressive +72.77 percentage point uniform shift across all explicit years, which far exceeds historical precedent. |
 | **Peer P/E Multiples** | **\$16.44** *(Reference)* | **Peer Choices & Earnings Basis:** **One-peer reference estimate of \$16.44** from General Motors (15.22× P/E) applied to Tesla's FY2025 GAAP diluted EPS (\$1.08). Ford is unusable due to negative EPS (\$(2.06)). Limitation: Reflects legacy cyclical automaker pricing, giving zero valuation credit to Tesla's net cash balance sheet, energy storage growth, or autonomous software development. |
-| **Observed Market Price** | **\$356.09** | **Market-Implied Expectations:** Implies a \$1.256T market cap and trades at **329.71× trailing earnings** (9.0× fundamental DCF baseline; 21.7× automotive peer reference). Reflects a substantial valuation premium over traditional automotive manufacturing benchmarks, pricing in unproven software and robotics optionality. |
+| **Observed Market Price** | **\$356.09** | **Market-Implied Expectations:** Trades at **329.71× trailing earnings** (9.0× fundamental DCF baseline; 21.7× automotive peer reference). Reflects a substantial valuation premium over traditional automotive manufacturing benchmarks, pricing in unproven software and robotics optionality. |
 
 *Note: In accordance with course guidelines, the DCF sensitivity range (\$34.06–\$54.60) and the peer P/E reference estimate (\$16.44) are kept strictly separate; they are derived from fundamentally different valuation objects and are not blended or averaged.*
 
@@ -169,13 +168,13 @@ my decision. I will check your criticism against my sources before revising my c
 * **Colleague's Criticism:**  
   *"General Motors is an imperfect benchmark for Tesla. GM carries \$100B+ of debt inside GM Financial, sells via franchised dealers with lower gross margins, and has negligible utility-scale energy storage. Applying GM's 15.2× multiple to Tesla ignores Tesla's net cash balance sheet (+\$35.7B net cash) and its 27% growing Energy segment (\$12.8B revenue). You are penalizing Tesla for legacy automaker structural constraints it does not share."*
 * **Author's Judgment:** **ACCEPT (with Qualification).**
-* **Evidentiary Defense:** Confirmed by [Tesla Form 10-K, Note 4, p. 70](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm) (showing \$44.1B cash/investments vs \$8.4B debt) and [Note 16, Segment Reporting, p. 97](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm). GM's multiple is an equity multiple and does not adjust for Tesla's net cash. However, GM is the only profitable domestic vehicle manufacturing peer. This does not mean Tesla is worth \$16.44; rather, it demonstrates that **P/E multiples of legacy automakers cannot capture Tesla's multi-segment business model**, exposing the degree to which market pricing depends on non-automotive expectations.
+* **Evidentiary Defense:** Confirmed by [Tesla Form 10-K, Note 4, p. 70](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm) (showing \$44.1B cash/investments vs \$8.4B debt) and [Note 16, Segment Reporting, pp. 92–93](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm). GM's different capital structure—including captive finance debt that Tesla does not carry—makes it a qualified, imperfect comparison. GM is the only profitable domestic vehicle manufacturing peer. This does not mean Tesla is worth \$16.44; rather, it demonstrates that **P/E multiples of legacy automakers cannot capture Tesla's multi-segment business model**, exposing the degree to which market pricing depends on non-automotive expectations.
 
 #### Challenge 3: The Skeptical Deciding Question
 * **Colleague's Question:**  
   *"Given that Tesla's fundamental DCF value is \$39.74 and its peer-implied auto value is \$16.44, does the \$356.09 market price reflect an unsustainable valuation premium, or are you modeling the wrong company by treating Tesla primarily as an automaker instead of an autonomous software and robotics platform?"*
 * **Author's Judgment:** **UNRESOLVED (Central Strategic Question).**
-* **Evidentiary Defense:** In SEC filings, **73.3% of revenue and over 80% of gross profit still derive from vehicle sales**. [Item 1 (pp. 2–5)](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm) describes Robotaxi, Cybercab, and Optimus under development outlooks, with zero audited commercial revenue in FY2025. Fundamental financial analysis bound to audited accounting evidence cannot capitalize hypothetical revenues that have not yet materialized. Therefore, current market pricing reflects growth expectations far in excess of current operational performance.
+* **Evidentiary Defense:** In SEC filings, **73.3% of revenue still derives from the Automotive segment (including Services and Other)**. [Item 1 (pp. 2–5)](https://www.sec.gov/Archives/edgar/data/1318605/000162828026003952/tsla-20251231.htm) describes Robotaxi, Cybercab, and Optimus under development outlooks; revenue from Robotaxi operations is not separately disclosed in the audited financial statements. Fundamental financial analysis bound to audited accounting evidence cannot capitalize hypothetical revenues that have not yet materialized. Therefore, current market pricing reflects growth expectations far in excess of current operational performance.
 
 ---
 
@@ -204,7 +203,7 @@ The peer comparison confirms that **comparable multiples do not support Tesla's 
    * **Audited 10-K/10-Q disclosures** demonstrating that commercial Robotaxi operations or FSD software subscriptions are generating high-margin, recurring software cash flows (gross margins >70%), establishing a revenue trajectory independent of vehicle manufacturing margins.
 2. **Evidence to Downgrade to Do Not Initiate (Sell / Avoid):**  
    * Capital expenditures exceeding \$20B in 2026 while automotive gross margins (excluding regulatory credits) compress below 14%, indicating that elevated capital intensity is not yielding operating leverage.
-   * Legislative or regulatory curtailment of automotive regulatory credits (\$1,993M in 2025), which represented over 50% of Tesla's net operating profit.
+   * Legislative or regulatory curtailment of automotive regulatory credits (\$1,993M in 2025), which exceed half of Tesla's net income attributable to common stockholders (\$3,794M in FY2025).
 
 ---
 
