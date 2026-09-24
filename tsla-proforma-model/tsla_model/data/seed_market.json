@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "compiled": "2026-09-24",
+    "notes": "Fallback market inputs used only when live retrieval fails. Live values replace these at runtime when available."
+  },
+  "price": {"value": 378.25, "as_of": "2026-09-24", "source": "Yahoo Finance chart API / Nasdaq quote API (intraday last sale at compile time)", "type": "history"},
+  "risk_free": {"value": 0.0511, "as_of": "2026-09-23", "source": "U.S. Treasury daily par yield curve, 10-year CMT", "type": "history"},
+  "tsla_beta_observed": {"value": 1.76, "as_of": "2026-09-24", "method": "OLS slope of 5 years of monthly total returns (adjusted close) vs. S&P 500 (^GSPC), 59 observations", "source": "Yahoo Finance chart API, computed by tsla_model.data_ingestion", "type": "history"},
+  "peers": [
+    {"ticker": "GM",   "name": "General Motors",      "group": "Legacy auto",       "beta": 1.42, "market_cap": 72596, "debt": 16000, "debt_type": "judgment", "tax_rate": 0.21, "include": true,
+     "revenue_lfy": 185019, "net_income_lfy": 2697,
+     "notes": "Debt is JUDGMENT: approximate GM automotive (ex-GM Financial) debt. Captive-finance debt funds a lending book, not operating leverage, so it is excluded. Revenue/NI: FY2025 10-K XBRL."},
+    {"ticker": "F",    "name": "Ford Motor",          "group": "Legacy auto",       "beta": 1.89, "market_cap": 50271, "debt": 20000, "debt_type": "judgment", "tax_rate": 0.21, "include": true,
+     "revenue_lfy": 187267, "net_income_lfy": null,
+     "notes": "Debt is JUDGMENT: approximate Company-excluding-Ford-Credit debt. FY2025 net income not available in clean XBRL tags, so excluded from P/E."},
+    {"ticker": "RIVN", "name": "Rivian Automotive",   "group": "EV pure-play",      "beta": 1.67, "market_cap": 21855, "debt": 4475, "debt_type": "history", "tax_rate": 0.0, "include": true,
+     "revenue_lfy": 5387, "net_income_lfy": -3646,
+     "notes": "Debt: XBRL DebtInstrumentCarryingAmount at 2026-06-30. Loss-making, so 0% tax shield assumed in unlevering."},
+    {"ticker": "LCID", "name": "Lucid Group",         "group": "EV pure-play",      "beta": 0.76, "market_cap": 1608,  "debt": 3254, "debt_type": "history", "tax_rate": 0.0, "include": true,
+     "revenue_lfy": 1354, "net_income_lfy": -2698,
+     "notes": "Debt: XBRL DebtLongtermAndShorttermCombinedAmount at 2026-06-30. Very high D/E; low observed beta likely reflects idiosyncratic/financing-driven price action."},
+    {"ticker": "ENPH", "name": "Enphase Energy",      "group": "Energy/storage",    "beta": 1.40, "market_cap": 4185,  "debt": 573,  "debt_type": "history", "tax_rate": 0.21, "include": true,
+     "revenue_lfy": 1473, "net_income_lfy": 172,
+     "notes": "Debt: XBRL LongTermDebt at 2026-03-31."},
+    {"ticker": "FLNC", "name": "Fluence Energy",      "group": "Energy/storage",    "beta": 2.74, "market_cap": 1347,  "debt": 392,  "debt_type": "history", "tax_rate": 0.0, "include": true,
+     "revenue_lfy": 2263, "net_income_lfy": -48,
+     "notes": "Debt: XBRL ConvertibleLongTermNotesPayable at 2026-06-30. Fiscal year ends Sept 30. Loss-making, so 0% tax shield."}
+  ],
+  "peer_market_data": {"as_of": "2026-09-24", "market_cap_source": "Nasdaq quote summary API", "beta_source": "Yahoo Finance 5y monthly vs S&P 500"}
+}
