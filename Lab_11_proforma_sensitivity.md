@@ -193,7 +193,7 @@ SUCCESS: Base inputs and outputs are fully restored and verified.
 |---|---|---|:---:|
 | **Base before and after analysis** | Same inputs and outputs within 0.0 tolerance | Pre-run: $6,091.6M op income, $2,157.5M FCFE, -$1.83/share. Post-run: exactly identical (difference = 0.00). | ✅ PASS |
 | **Lower or higher run isolation** | Only the selected independent input changed; linked quantities recalculated | When `GROWTH` changed, `GROSS_MARGIN` stayed at 22.39%; when `GROSS_MARGIN` changed, `GROWTH` stayed at 10.0%. Statements dynamically recalculated. | ✅ PASS |
-| **Accounting checks on usable runs** | Assets − Liabilities − Equity = 0.0; Cash $\ge$ $15,000M | Balance sheet gap is 0.00 across all 5 years on all four sensitivity runs. All four maintain cash $\ge$ $15,000M. | ✅ PASS |
+| **Accounting checks on usable runs** | Assets − Liabilities − Equity = 0.0; Cash $\ge$ $15,000M | Balance sheet gap is within the 0.05 tolerance in all 5 years on all four sensitivity runs. All four maintain cash $\ge$ $15,000M. | ✅ PASS |
 | **Change from base recomputes** | Changed output minus base output matches signed differences | Verified across all rows (e.g. Higher Growth: $7,767.6M − $6,091.6M = +$1,676.1M; FCFE $3,751.0M − $2,157.5M = +$1,593.5M; Value $2.81 − (-$1.83) = +$4.64/share). | ✅ PASS |
 
 ---
@@ -231,7 +231,7 @@ An output span is the maximum valid output minus the minimum valid output across
 ### 2. Partner Exchange 3 — Explain and Compare (Partner Company: Marriott, `MAR`)
 
 > **My causal link explanation:**  
-> *Over our tested ranges, Revenue Growth produces an operating income span of $3,234.6M versus $1,588.3M for Gross Margin. Revenue growth compounds geometrically over five years ($\text{Revenue}_{2030} = \text{Revenue}_{2025} \times (1+g)^5$), expanding the 2030 revenue base from $139.3B (at 8%) to $167.1B (at 12%)—a $27.8B spread. However, on a per-percentage-point basis, both drivers possess nearly identical leverage: 1.0 pp of Gross Margin moves 2030 operating income by $794.1M, while 1.0 pp of Growth moves it by ~$779M–$808M. Growth has the larger total span simply because its tested economic range is twice as wide (4.0 pp vs 2.0 pp).*  
+> *Over our tested ranges, Revenue Growth produces an operating income span of $3,234.6M versus $1,588.3M for Gross Margin. Revenue growth compounds geometrically over five years ($\text{Revenue}_{2030} = \text{Revenue}_{2025} \times (1+g)^5$), expanding the 2030 revenue base from $139.3B (at 8%) to $167.1B (at 12%)—a $27.8B spread. However, on a per-percentage-point basis, both drivers possess nearly identical leverage: 1.0 pp of Gross Margin moves 2030 operating income by $794.1M, while 1.0 pp of Growth moves it by ~$779M–$838M. Growth has the larger total span simply because its tested economic range is twice as wide (4.0 pp vs 2.0 pp).*  
 >
 > **Partner's question & comparison:**  
 > *Partner's question: "In Marriott, franchise fee margin has much higher per-unit power than room growth because over 80% of fee revenue drops straight to operating profit with almost no working capital or capex needs. Why doesn't Tesla's gross margin dominate revenue growth by an even larger multiple?"*  
@@ -264,18 +264,17 @@ A sensitivity table is a deterministic "what if" stress test, not a probabilisti
 1. **Which driver mattered most over your ranges?**  
    Over our tested ranges, **Revenue Growth** produced the larger output span ($3,234.6M in operating profit, $3,077.3M in FCFE, and $8.97/share in equity value, compared to $1,588.3M, $1,413.7M, and $4.51/share for gross margin). Five-year compounding across an expanding revenue base drives this result over the 4.0 percentage point growth window.
 2. **Which result surprised you?**  
-   **How close the per-percentage-point leverage is between growth and margin.** One percentage point of gross margin moves 2030 operating profit by $794.1M, while one percentage point of revenue growth moves it by ~$779M–$808M. Despite growth compounding geometrically over five years, gross margin's direct 100% price realization on a ~$153B revenue base delivers nearly identical structural impact per 100 basis points.
+   **How close the per-percentage-point leverage is between growth and margin.** One percentage point of gross margin moves 2030 operating profit by $794.1M, while one percentage point of revenue growth moves it by ~$779M–$838M. Despite growth compounding geometrically over five years, gross margin's direct 100% price realization on a ~$153B revenue base delivers nearly identical structural impact per 100 basis points.
 
 ---
 
 ## Checkout — Files on GitHub
 
-| File Name | GitHub Source Link | Description & Role in Submission | Status |
-|---|---|---|:---:|
-| **`sensitivity_tsla.py`** | [View on GitHub](https://github.com/mnine393/TICKER-research/blob/main/sensitivity_tsla.py) | Python one-at-a-time sensitivity engine, statement trace, and restored base check. | **Verified & Running** |
-| **`Lab_11_proforma_sensitivity.md`** | [View on GitHub](https://github.com/mnine393/TICKER-research/blob/main/Lab_11_proforma_sensitivity.md) | Full Lab 11 sensitivity report, locked prediction, partner exchanges, span rankings, and reflections. | **Submission-Ready** |
-| **`proforma_tsla.py`** | [View on GitHub](https://github.com/mnine393/TICKER-research/blob/main/proforma_tsla.py) | Lab 10 Tesla pro-forma model running through the three-statement engine. | **Unchanged Benchmark** |
-| **`proforma.py`** | [View on GitHub](https://github.com/mnine393/TICKER-research/blob/main/proforma.py) | Lab 09 core three-statement engine (still reproduces ABG $291.75 known answer). | **Unchanged Core** |
-| **`Lab_10_proforma_tsla.md`** | [View on GitHub](https://github.com/mnine393/TICKER-research/blob/main/Lab_10_proforma_tsla.md) | Lab 10 Tesla three-statement model report, assumptions table, and check blocks. | **Archived Reference** |
+| File Name | GitHub Source Link | Description & Role in Submission |
+|---|---|---|
+| **`sensitivity_tsla.py`** | [View on GitHub](https://github.com/mnine393/TICKER-research/blob/main/sensitivity_tsla.py) | Python one-at-a-time sensitivity engine, statement trace, and restored base check. |
+| **`Lab_11_proforma_sensitivity.md`** | [View on GitHub](https://github.com/mnine393/TICKER-research/blob/main/Lab_11_proforma_sensitivity.md) | Full Lab 11 sensitivity report, locked prediction, partner exchanges, span rankings, and reflections. |
+| **`proforma_tsla.py`** | [View on GitHub](https://github.com/mnine393/TICKER-research/blob/main/proforma_tsla.py) | Lab 10 Tesla pro-forma model running through the three-statement engine. |
+| **`proforma.py`** | [View on GitHub](https://github.com/mnine393/TICKER-research/blob/main/proforma.py) | Lab 09 core three-statement engine (still reproduces ABG $291.75 known answer). |
+| **`Lab_10_proforma_tsla.md`** | [View on GitHub](https://github.com/mnine393/TICKER-research/blob/main/Lab_10_proforma_tsla.md) | Lab 10 Tesla three-statement model report, assumptions table, and check blocks. |
 
-*All files conform strictly to FIN 43900 academic standards and course integrity policies.*
