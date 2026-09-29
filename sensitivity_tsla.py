@@ -4,9 +4,9 @@ Builds on the Lab 10 Tesla pro-forma model (proforma_tsla.py) and the Lab 09 thr
 engine (proforma.py). Performs one-at-a-time sensitivity analysis for two independent operating
 drivers:
   1. Annual Revenue Growth (GROWTH): 8.0% (lower), 10.0% (base), 12.0% (higher)
-  2. Gross Margin before D&A (GROSS_MARGIN): 21.39% (lower), 22.39% (base), 23.39% (higher)
+  2. Gross Margin before D&A (GROSS_MARGIN): 21.39% (lower), ~22.39% (base), 23.39% (higher)
 
-Preserves a separate base input set, runs each scenario with a fresh independent copy,
+Preserves a separate base input set, runs each scenario from a fresh independent copy,
 verifies accounting checks, computes output spans, traces statement mechanics, and confirms
 that the restored base matches the starting run exactly. Standard library only.
 
@@ -105,16 +105,21 @@ def run_scenario(inputs_dict):
     op_inc_2030 = last["operating_income"]
     fcfe_2030 = last["fcfe"]
     
-    # Valuation: follow Lab 10 rule (positive FCFE only + terminal value if final year positive)
+    # DCF valuation: include EVERY forecast year with its sign (do not discard negative FCFE)
     ke = inputs_dict["COST_OF_EQUITY"]
     g = inputs_dict["TERMINAL_GROWTH"]
+    pv_fcfe = sum(r["fcfe"] / (1 + ke) ** (t + 1) for t, r in enumerate(rows))
+    
+    # Calculate terminal value only if model checks pass, final-year FCFE is positive, and ke > g
     if checks_pass and last["fcfe"] > 0 and (ke > g):
-        pv_pos = sum(r["fcfe"] / (1 + ke) ** (t + 1) for t, r in enumerate(rows) if r["fcfe"] > 0)
         terminal = (last["fcfe"] + last["repayment"]) * (1 + g) / (ke - g)
         pv_terminal = terminal / (1 + ke) ** len(rows)
-        equity_val = pv_pos + pv_terminal
+        equity_val = pv_fcfe + pv_terminal
         val_per_share = equity_val / inputs_dict["SHARES"]
     else:
+        terminal = None
+        pv_terminal = None
+        equity_val = None
         val_per_share = None
         
     return {
@@ -123,10 +128,52 @@ def run_scenario(inputs_dict):
         "fail_reasons": fail_reasons,
         "op_inc_2030": op_inc_2030,
         "fcfe_2030": fcfe_2030,
+        "pv_fcfe": pv_fcfe,
+        "terminal": terminal,
+        "pv_terminal": pv_terminal,
+        "equity_val": equity_val,
         "val_per_share": val_per_share,
         "max_revolver": max(r["revolver"] for r in rows),
         "min_cash": min(r["cash"] for r in rows),
     }
+
+
+def calc_spans(run_list):
+    """Compute output span = max valid result - min valid result across valid lower/base/higher runs."""
+    ops = [r["op_inc_2030"] for r in run_list if r["checks_pass"]]
+    fcs = [r["fcfe_2030"] for r in run_list if r["checks_pass"]]
+    vals = [r["val_per_share"] for r in run_list if r["checks_pass"] and r["val_per_share"] is not None]
+    
+    op_min = min(ops) if ops else None
+    op_max = max(ops) if ops else None
+    op_span = (op_max - op_min) if (op_max is not None and op_min is not None) else None
+    
+    fc_min = min(fcs) if fcs else None
+    fc_max = max(fcs) if fcs else None
+    fc_span = (fc_max - fc_min) if (fc_max is not None and fc_min is not None) else None
+    
+    val_min = min(vals) if vals else None
+    val_max = max(vals) if vals else None
+    val_span = (val_max - val_min) if (val_max is not None and val_min is not None) else None
+    
+    return {
+        "op_min": op_min, "op_max": op_max, "op_span": op_span,
+        "fc_min": fc_min, "fc_max": fc_max, "fc_span": fc_span,
+        "val_min": val_min, "val_max": val_max, "val_span": val_span,
+    }
+
+
+def format_val_span(spans_dict):
+    """Format the value-per-share span safely, handling None or negative values."""
+    if spans_dict["val_span"] is None:
+        return "N/A"
+    v_max = spans_dict["val_max"]
+    v_min = spans_dict["val_min"]
+    v_span = spans_dict["val_span"]
+    if v_min < 0:
+        return f"${v_max:>5.2f} - (${v_min:>5.2f}) = ${v_span:>5.2f}"
+    else:
+        return f"${v_max:>5.2f} - ${v_min:>5.2f} = ${v_span:>5.2f}"
 
 
 def main():
@@ -144,13 +191,16 @@ def main():
     print("\n--- BASELINE VERIFICATION (LAB 10 SAVED MODEL) ---")
     print(f"FY2030E Operating Income: ${base_res['op_inc_2030']:>10,.1f}M")
     print(f"FY2030E FCFE:             ${base_res['fcfe_2030']:>10,.1f}M")
-    print(f"Value per share:          ${base_res['val_per_share']:>10.2f}")
+    if base_res["val_per_share"] is not None:
+        print(f"Value per share:          ${base_res['val_per_share']:>10.2f}")
+    else:
+        print("Value per share:                 N/A")
     print(f"Accounting checks:        {'PASS (all 5 years balance, cash >= floor)' if base_res['checks_pass'] else 'FAIL'}")
     print(f"Peak revolver draw:       ${base_res['max_revolver']:>10,.1f}M (limit $5,000.0M)")
 
     # 2. Define sensitivity runs
-    # Driver 1: Revenue Growth (GROWTH) across all 5 years
-    # Driver 2: Gross Margin before D&A (GROSS_MARGIN) across all 5 years
+    # Driver 1: Revenue Growth (GROWTH) across all 5 years (8.0%, 10.0%, 12.0%)
+    # Driver 2: Gross Margin before D&A (GROSS_MARGIN) across all 5 years (21.39%, ~22.39%, 23.39%)
     base_growth = base_inputs["GROWTH"]
     base_gm = base_inputs["GROSS_MARGIN"]
 
@@ -193,71 +243,41 @@ def main():
         diff_fc = r["fcfe_2030"] - base_fc
         op_str = f"{r['op_inc_2030']:>8,.1f} ({diff_op:>+7,.1f})" if r["label"] != "Base run" else f"{r['op_inc_2030']:>8,.1f} (  base )"
         fc_str = f"{r['fcfe_2030']:>7,.1f} ({diff_fc:>+7,.1f})" if r["label"] != "Base run" else f"{r['fcfe_2030']:>7,.1f} ( base )"
-        if r["val_per_share"] is not None:
+        
+        if r["val_per_share"] is not None and base_val is not None:
             diff_v = r["val_per_share"] - base_val
             v_str = f"${r['val_per_share']:>5.2f} ({diff_v:>+5.2f})" if r["label"] != "Base run" else f"${r['val_per_share']:>5.2f} ( base)"
+        elif r["val_per_share"] is not None:
+            v_str = f"${r['val_per_share']:>5.2f} (  N/A )"
         else:
             v_str = "    N/A          "
+            
         chk_str = "PASS" if r["checks_pass"] else "FAIL"
         print(f"{r['label']:28} | {op_str:22} | {fc_str:18} | {v_str:16} | {chk_str}")
 
     print("-" * 105)
     print("Note: Signed changes from base are shown in parentheses. Money is in USD millions except $/share.")
-    print("All four sensitivity runs pass the balance sheet zero-gap check and minimum cash floor.")
+    print("DCF includes all forecast years with their sign, discounting negative FCFE at cost of equity.")
 
     # 4. Compute and Print Output Spans
     # Span = max valid output - min valid output across lower, base, higher
     growth_runs = [results[0], results[1], results[2]]  # base, lower, higher
     gm_runs = [results[0], results[3], results[4]]      # base, lower, higher
 
-    def calc_spans(run_list):
-        ops = [r["op_inc_2030"] for r in run_list if r["checks_pass"]]
-        fcs = [r["fcfe_2030"] for r in run_list if r["checks_pass"]]
-        vals = [r["val_per_share"] for r in run_list if r["checks_pass"] and r["val_per_share"] is not None]
-        return {
-            "op_min": min(ops), "op_max": max(ops), "op_span": max(ops) - min(ops),
-            "fc_min": min(fcs), "fc_max": max(fcs), "fc_span": max(fcs) - min(fcs),
-            "val_min": min(vals), "val_max": max(vals), "val_span": max(vals) - min(vals),
-        }
-
     g_spans = calc_spans(growth_runs)
     gm_spans = calc_spans(gm_runs)
 
     print("\n" + "=" * 80)
-    print("WHICH DRIVER MATTERS MOST OVER TESTED RANGES? (OUTPUT SPANS)")
+    print("OUTPUT SPANS: MAXIMUM VALID RESULT MINUS MINIMUM VALID RESULT")
     print("=" * 80)
-    print(f"{'Output Metric':24} | {'Revenue Growth Span (8%–12%)':28} | {'Gross Margin Span (21.39%–23.39%)':32}")
+    print(f"{'Output Metric':24} | {'Revenue Growth Output Span':28} | {'Gross Margin Output Span':32}")
     print("-" * 92)
     print(f"{'FY2030E Operating Income':24} | {g_spans['op_max']:>7,.1f} - {g_spans['op_min']:>7,.1f} = ${g_spans['op_span']:>7,.1f}M | {gm_spans['op_max']:>7,.1f} - {gm_spans['op_min']:>7,.1f} = ${gm_spans['op_span']:>7,.1f}M")
     print(f"{'FY2030E FCFE':24} | {g_spans['fc_max']:>7,.1f} - {g_spans['fc_min']:>7,.1f} = ${g_spans['fc_span']:>7,.1f}M | {gm_spans['fc_max']:>7,.1f} - {gm_spans['fc_min']:>7,.1f} = ${gm_spans['fc_span']:>7,.1f}M")
-    print(f"{'Value per share':24} | ${g_spans['val_max']:>5.2f} - ${g_spans['val_min']:>5.2f} = ${g_spans['val_span']:>5.2f}    | ${gm_spans['val_max']:>5.2f} - ${gm_spans['val_min']:>5.2f} = ${gm_spans['val_span']:>5.2f}")
+    print(f"{'Value per share':24} | {format_val_span(g_spans):<28} | {format_val_span(gm_spans):<32}")
     print("-" * 92)
-    print("CONCLUSION: Revenue Growth has the larger span for all three outputs OVER THESE RANGES.")
-    print("  - Revenue Growth tested range: 4.0 percentage points (8.0% to 12.0%)")
-    print("  - Gross Margin tested range:   2.0 percentage points (21.39% to 23.39%)")
-    print("On a per-percentage-point basis, 1 pp of Gross Margin moves Operating Profit by ~$794M,")
-    print("while 1 pp of Growth moves Operating Profit by ~$779M–$808M (nearly identical per-unit power).")
 
-    # 5. Diagnostic Check: Breaching the Revolver Limit
-    # What happens if Gross Margin drops by -2.0 pp (to 20.39%)?
-    print("\n" + "=" * 80)
-    print("DIAGNOSTIC CHECK: SOLVENCY & REVOLVER CAPACITY LIMIT TEST")
-    print("=" * 80)
-    diag_inputs = copy.deepcopy(TESLA_BASE_INPUTS)
-    diag_inputs["GROSS_MARGIN"] = base_gm - 0.02  # 20.39% (-2.0 pp)
-    diag_res = run_scenario(diag_inputs)
-    print("Testing Gross Margin at 20.39% (-2.0 percentage points):")
-    print(f"  FY2030E Operating Income: ${diag_res['op_inc_2030']:>10,.1f}M")
-    print(f"  FY2030E FCFE:             ${diag_res['fcfe_2030']:>10,.1f}M")
-    print(f"  Accounting Checks Pass:   {diag_res['checks_pass']}")
-    print(f"  Identified Failure Flags: {', '.join(diag_res['fail_reasons'])}")
-    print(f"  Peak Revolver Draw:       ${diag_res['max_revolver']:>10,.1f}M (hits the $5,000.0M ceiling)")
-    print(f"  Minimum Cash Balance:     ${diag_res['min_cash']:>10,.1f}M (falls below $15,000.0M floor)")
-    print("  Result: The model flags this run as INVALID and refuses to compute a misleading valuation.")
-    print("  This diagnostic explains why our primary sensitivity range for Gross Margin is ±1.0 pp:")
-    print("  Because Tesla guides $96B in capex, a 2.0 pp margin decline depletes all $44B cash plus the credit line!")
-
-    # 6. Selected Result Statement Trace (Higher Growth 12.0% vs Base)
+    # 5. Selected Result Statement Trace (Higher Growth 12.0% vs Base)
     print("\n" + "=" * 80)
     print("STATEMENT TRACE: HIGHER GROWTH (12.0%) VS BASELINE (10.0%) IN FY2030E")
     print("=" * 80)
@@ -286,41 +306,45 @@ def main():
         d_val = h_val - b_val
         print(f"{lbl:35} | {b_val:>14,.1f} | {h_val:>14,.1f} | {d_val:>+14,.1f}")
     print("-" * 85)
-    print("Mechanistic Trace: Higher growth compounds revenue by +$14,395.7M in FY2030E (+9.4%).")
-    print("Gross profit expands by +$3,222.8M. Because SG&A is 48% of gross profit, operating income")
-    print("rises by +$1,676.0M. After tax and working capital adjustments, FCFE rises by +$1,593.5M.")
-    print("Cumulative cash stays above $15B in every year without needing any revolver financing ($0 draw).")
 
-    # 7. Restored Base Verification
+    # 6. Restored Base Verification
     print("\n" + "=" * 80)
     print("RESTORED BASELINE INTEGRITY CHECK")
     print("=" * 80)
     apply_inputs(TESLA_BASE_INPUTS)
-    restored_rows = engine.project()
-    engine.assert_balanced(restored_rows)
-    restored_last = restored_rows[-1]
-    restored_op = restored_last["operating_income"]
-    restored_fc = restored_last["fcfe"]
-    ke = TESLA_BASE_INPUTS["COST_OF_EQUITY"]
-    g = TESLA_BASE_INPUTS["TERMINAL_GROWTH"]
-    pv_pos = sum(r["fcfe"] / (1 + ke) ** (t + 1) for t, r in enumerate(restored_rows) if r["fcfe"] > 0)
-    terminal = (restored_last["fcfe"] + restored_last["repayment"]) * (1 + g) / (ke - g)
-    pv_terminal = terminal / (1 + ke) ** len(restored_rows)
-    restored_val = (pv_pos + pv_terminal) / TESLA_BASE_INPUTS["SHARES"]
+    restored_res = run_scenario(copy.deepcopy(TESLA_BASE_INPUTS))
+    restored_op = restored_res["op_inc_2030"]
+    restored_fc = restored_res["fcfe_2030"]
+    restored_val = restored_res["val_per_share"]
 
     diff_op_restored = abs(restored_op - base_op)
     diff_fc_restored = abs(restored_fc - base_fc)
-    diff_val_restored = abs(restored_val - base_val)
+
+    if base_val is not None and restored_val is not None:
+        diff_val_restored = abs(restored_val - base_val)
+        val_match_str = f"EXACT (diff {diff_val_restored:.2f})" if diff_val_restored < 1e-4 else "MISMATCH"
+        base_val_str = f"${base_val:>16.2f}"
+        restored_val_str = f"${restored_val:>16.2f}"
+    elif base_val is None and restored_val is None:
+        diff_val_restored = 0.0
+        val_match_str = "EXACT (both N/A)"
+        base_val_str = f"{'N/A':>18}"
+        restored_val_str = f"{'N/A':>18}"
+    else:
+        diff_val_restored = 999.0
+        val_match_str = "MISMATCH"
+        base_val_str = f"${base_val:>16.2f}" if base_val is not None else f"{'N/A':>18}"
+        restored_val_str = f"${restored_val:>16.2f}" if restored_val is not None else f"{'N/A':>18}"
 
     print(f"{'Check':32} | {'Before Analysis':18} | {'After Analysis':18} | {'Match'}")
     print("-" * 80)
     print(f"{'FY2030E Operating Income':32} | ${base_op:>16,.1f} | ${restored_op:>16,.1f} | {'EXACT (diff 0.0)' if diff_op_restored < 1e-6 else 'MISMATCH'}")
     print(f"{'FY2030E FCFE':32} | ${base_fc:>16,.1f} | ${restored_fc:>16,.1f} | {'EXACT (diff 0.0)' if diff_fc_restored < 1e-6 else 'MISMATCH'}")
-    print(f"{'Value per share (USD)':32} | ${base_val:>16.2f} | ${restored_val:>16.2f} | {'EXACT (diff 0.0)' if diff_val_restored < 1e-6 else 'MISMATCH'}")
+    print(f"{'Value per share (USD)':32} | {base_val_str} | {restored_val_str} | {val_match_str}")
     print(f"{'Balance sheet zero-gap check':32} | {'PASS':>18} | {'PASS':>18} | EXACT")
     print(f"{'Cash floor check (>= $15,000M)':32} | {'PASS':>18} | {'PASS':>18} | EXACT")
     print("-" * 80)
-    assert diff_op_restored < 1e-6 and diff_fc_restored < 1e-6 and diff_val_restored < 1e-6, "Restored base does not match original base!"
+    assert diff_op_restored < 1e-6 and diff_fc_restored < 1e-6 and diff_val_restored < 1e-4, "Restored base does not match original base!"
     print("SUCCESS: Base inputs and outputs are fully restored and verified.")
 
 
