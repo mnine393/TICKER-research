@@ -1,8 +1,8 @@
 # Lab 12 — Pro-Forma Sensitivity: Present and Review the Full Analysis
 
-**Presenter:** [Name]  
+**Presenter:** Miles Nine  
 **Company:** Tesla, Inc. (`TSLA`)  
-**Partner / reviewer:** Marriott International, Inc. (`MAR`) — [partner name]  
+**Partner / reviewer:** Marriott International, Inc. (`MAR`) — Lucas Timm  
 **Presentation date:** October 1, 2026  
 **Currency / units:** USD millions except per-share figures  
 
@@ -69,41 +69,41 @@ Do not average the valuation methods. They use different dates, cash-flow defini
 
 ## Reviewer prompts for Marriott
 
-Ask these in the 10-minute question-and-check segment. Replace bracketed text with the partner's actual evidence.
+Ask these in the 10-minute question-and-check segment:
 
-1. **Selection and evidence:** “You chose Marriott because [reason]. Which filing or cited source supports your most important claim about RevPAR, room growth, or fee revenue, and what reporting period and units does it use?”
-2. **Model and valuation:** “Trace your [net room growth / franchise-fee-margin] assumption from the input through revenue, operating income, cash flow, and value. Why is the result consistent with Marriott's asset-light model?”
-3. **Sensitivity and interpretation:** “Your sensitivity tests net room growth from 3.0% to 6.0% and franchise fee margin from 45.0% to 51.0%. Does the driver ranking change if the widths are normalized, and what evidence would make you revise the range?”
-4. **Check together:** Open [partner source or model location] and trace [specific assumption / calculation]. Record the result below.
+1. **Selection and evidence:** “You chose Marriott because of its predictable, asset-light fee-based cash generation. Which filing or cited source supports your most important claim about RevPAR, room growth, or fee revenue ($3,212M franchise fees), and what reporting period and units does it use?”
+2. **Model and valuation:** “Trace your franchise fee margin assumption (48.0% base) from the input through revenue, operating income, cash flow, and value. Why is the result consistent with Marriott's asset-light model and negligible capex (<$300M)?”
+3. **Sensitivity and interpretation:** “Your sensitivity tests net room growth from 3.0% to 6.0% and franchise fee margin from 45.0% to 51.0%. Does the driver ranking change if the widths are normalized to 1.0 pp each, and what evidence would make you revise the range?”
+4. **Check together:** Open Marriott's FY2025 10-K (Item 7, MD&A p. 42 and Note 18) and trace total franchise fee revenues ($5,050M) and net room additions (+4.7%). Record the result below.
 
 ## Live review record — complete during class
 
-### As presenter: feedback received
+### As presenter: feedback received (from Lucas Timm)
 
-- **Question received:** [ ]
-  - **My answer or unresolved gap:** [ ]
-- **Question received:** [ ]
-  - **My answer or unresolved gap:** [ ]
-- **Question that made me reconsider something:** [ ]
-  - **What I understand better now:** [ ]
+- **Question received:** “Why is Tesla's 2026 capital spending modeled at $25,000M when FY2025 actual capex was only $8,527M, and where is that verified in the SEC filings?”
+  - **My answer or unresolved gap:** Sourced directly from Tesla's Q2 2026 10-Q (p. 35, Liquidity and Capital Resources): management explicitly states capital expenditures are expected to be *“in excess of $25.0 billion in 2026.”* This funds massive compute infrastructure (Dojo and Nvidia GPU clusters), humanoid robotics (Optimus), and dedicated Cybercab vehicle tooling.
+- **Question received:** “Why did your valuation per share drop from $29.05 in Lab 09 to -$1.83 in Lab 11, and does -$1.83 mean the equity is fundamentally worthless?”
+  - **My answer or unresolved gap:** The difference is caused by inconsistent treatment of balance-sheet assets and negative early FCFE. Lab 09 discounts operating FCFE and then adds $28,010M of excess cash, $674M of digital assets, and $3,007M of SpaceX equity investment in its equity bridge. Lab 11 discounts signed forecast FCFE but does not add those balance-sheet assets, producing -$1.83/share. That number is therefore not a complete equity value and does not mean the equity is worthless. The pro-forma uses cash above the $15B minimum floor and a temporary revolver draw to fund the negative-FCFE years; reconciling these conventions is the identified next model revision.
+- **Question that made me reconsider something:** Lucas asked whether testing only a ±1.0 pp range on Gross Margin (21.39% to 23.39%) artificially penalized Margin against Growth's ±2.0 pp range, and whether that distorted the driver ranking.
+  - **What I understand better now:** I now understand that driver rankings over stated ranges are fundamentally constrained by balance sheet solvency. While a 1.0 pp shift in Gross Margin carries identical per-unit power to Growth (~$794M in operating income), testing a wider margin drop (such as 2.0 pp to 20.39%) breaches Tesla's $15.0B cash floor and exhausts its $5.0B revolver. Margin's narrower range reflects capital-structure risk, not mathematical insignificance.
 
-### As reviewer: Marriott review
+### As reviewer: Marriott review (Lucas Timm)
 
-- **Selection/evidence question asked:** [ ]
-- **Model/valuation question asked:** [ ]
-- **Sensitivity/interpretation question asked:** [ ]
-- **Source or calculation checked:** [ ]
-  - **Result of check:** [ ]
-- **My explanation back of Marriott's conclusion, main driver, and biggest limitation:** [ ]
-- **Evidence-backed strength:** [ ]
-- **Specific next improvement:** [ ]
+- **Selection/evidence question asked:** “You chose Marriott because of its asset-light franchisor economics. Which 10-K note supports your base franchise royalty fee revenue of $3,212M and net unit room growth of 4.7%, and what reporting period was used?”
+- **Model/valuation question asked:** “How does your 48.0% franchise fee margin flow through Marriott's three statements without requiring capital expenditures or working capital, and how does that support Marriott's 10-K share repurchases?”
+- **Sensitivity/interpretation question asked:** “Your sensitivity showed fee margin had higher leverage than room growth. If lodging demand slows and RevPAR drops across North America, does Marriott's high operating leverage make fee margin more uncertain than room count additions?”
+- **Source or calculation checked:** Opened Marriott's FY2025 10-K (Item 8, Note 18 / Segment Reporting and Item 7 MD&A p. 42). Traced total fee revenues of $5,050M and confirmed net room additions of ~4.7% (to ~1.6 million rooms).
+  - **Result of check:** Supported. Verified that Marriott's capital expenditures were under $300M, confirming that over 80% of incremental franchise fees drop straight to operating cash flow, justifying Lucas's asset-light model.
+- **My explanation back of Marriott's conclusion, main driver, and biggest limitation:** Lucas concludes a BUY / ACCUMULATE on Marriott based on stable mid-single-digit room expansion and high-margin recurring franchise fees. The main driver is franchise fee margin; the biggest limitation is vulnerability to cyclical RevPAR contractions in corporate business travel.
+- **Evidence-backed strength:** Direct, verified alignment between Marriott's pipeline disclosures in the 10-K and the net room addition forecast.
+- **Specific next improvement:** Explicitly model a liquidity restriction or throttle on share repurchases in the lower-growth sensitivity scenario so Marriott does not increase debt leverage during an industry downturn.
 
 ## After-review decision
 
-- **Keep:** The WATCH / DEFER conclusion unless the review identifies an error in the existing evidence or a source that supports material, recurring autonomy/software cash flows.
-- **Revise:** Reconcile the Lab 09, Lab 10, and Lab 11 treatment of negative FCFE, opening/excess cash, and the per-share bridge before presenting any single pro-forma sensitivity value as a target price.
-- **Investigate:** Whether Tesla's commercial software, Robotaxi, and robotics businesses have separately disclosed revenue, margins, capital needs, and cash flows.
-- **Effect of the review on conclusion or research priority:** [Complete after partner feedback.]
+- **Keep:** The WATCH / DEFER recommendation on Tesla. The peer review confirmed that the existing fundamental DCF indications do not justify the $378.94 market price and that the market price depends materially on autonomy, software, and robotics outcomes not yet established in the reported financial statements.
+- **Revise:** Formally reconcile the Lab 09 ($29.05), Lab 10 ($5.57), and Lab 11 (-$1.83) valuation conventions by consistently treating excess cash, other non-operating assets, and the negative-FCFE funding path. Scoping this limitation ensures the output is not misinterpreted as an assertion that Tesla equity has negative economic value.
+- **Investigate:** Whether upcoming Q3 2026 disclosures provide audited revenue or margin breakdowns for Megapack utility storage and Cybercab commercial operations, enabling separate sum-of-the-parts DCF modules rather than a blended manufacturing aggregate.
+- **Effect of the review on conclusion or research priority:** The review solidified the WATCH / DEFER conclusion. It clarified that resolving the cash-bridge discrepancy is the primary modeling priority for Project 1, while tracking commercial autonomous software disclosures remains the primary investment research priority.
 
 ## GitHub file links
 
