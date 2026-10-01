@@ -28,6 +28,7 @@ Do not average the valuation methods. They use different dates, cash-flow defini
 
 - I selected Tesla because it combines a large, reported automotive and energy business with a market price that appears to embed material autonomy, software, and robotics expectations.
 - My initial view was that a fundamental analysis should separate reported operating evidence from optionality that has not yet produced separately disclosed cash flows.
+- Tesla is not only a car company in the market's eyes. Its valuation also reflects the potential for AI training infrastructure, Full Self-Driving software, Robotaxi operations, Optimus robotics, and related recurring software or fleet economics. The central analytical question is whether those strategies can become independently measurable, high-margin cash-flow businesses.
 - Show: [research report](01_Research/Tesla_2026-09-03_report.md) and [Lab 08](Lab_08_comps_dcf.md).
 
 ### 2. Company and evidence — about 2 minutes
@@ -59,13 +60,14 @@ Do not average the valuation methods. They use different dates, cash-flow defini
 - Higher growth (12.0% versus 10.0%) raises FY2030E operating income by $1,676.1M and FY2030E FCFE by $1,593.5M. The trace is: growth → FY2030E revenue (+$14,397.7M) → gross profit (+$3,223.2M) → operating income → FCFE.
 - Over these stated ranges, growth has the wider result span: $3,234.6M operating income, $3,077.3M FCFE, and $8.97 per share, versus gross margin's $1,588.3M, $1,413.7M, and $4.51 per share.
 - The ranking is not a probability statement. Growth has a 4.0-percentage-point tested range versus gross margin's 2.0-point range; per percentage point, their operating-income effects are similar.
+- The deeper strategic driver outside this two-input sensitivity is whether Tesla converts its AI, Robotaxi, and robotics investment into disclosed commercial revenue and durable cash flow. I do not assign that optionality a separate value today because the current model does not yet have a source-supported revenue, margin, capex, and working-capital schedule for it.
 - Show: [Lab 11 output](Lab_11_proforma_sensitivity.md) and [sensitivity code](sensitivity_tsla.py).
 
 ### 6. Interpretation — about 2 minutes
 
 - My conclusion remains WATCH / DEFER at the saved market prices because the existing fundamental evidence does not support the market's implied autonomy/software/robotics expectations.
 - Evidence that could change my view: separately disclosed, recurring, high-margin commercial Robotaxi/FSD cash flows; evidence of a durable improvement in automotive/energy margins; or a market-price change toward a fundamentally supportable range.
-- The next research priority is to reconcile the valuation conventions and then investigate whether autonomy and robotics can generate independent, recurring cash flows rather than treating them as assumed optionality.
+- The next research priority is to reconcile the valuation conventions and then investigate whether autonomy, Robotaxi, and robotics can generate independent, recurring cash flows rather than treating them as assumed optionality. If the evidence supports it, the next model should add a separate AI/Robotaxi/robotics schedule rather than burying the strategy in one blended automotive growth rate.
 
 ## Reviewer prompts for Marriott
 
