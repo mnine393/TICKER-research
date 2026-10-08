@@ -1,0 +1,351 @@
+{
+  "target": "Tesla, Inc. (TSLA)",
+  "valuation_date": "2026-09-24",
+  "currency_units": "USD millions except per-share",
+  "data_mode": "offline seed data (tsla_model/data/seed_*.json)",
+  "price": {
+    "value": 378.25,
+    "as_of": "2026-09-24",
+    "source": "Yahoo Finance chart API / Nasdaq quote API (intraday last sale at compile time)"
+  },
+  "risk_free": {
+    "value": 0.0511,
+    "as_of": "2026-09-23",
+    "source": "U.S. Treasury daily par yield curve, 10-year CMT"
+  },
+  "cash_flow_convention": "FCFE (free cash flow to equity), discounted at cost of equity",
+  "base_case": {
+    "status": "OK",
+    "value_per_share": 29.0495,
+    "upside_vs_price": -0.9232,
+    "cost_of_equity": 0.1038,
+    "terminal_growth": 0.03,
+    "terminal_value_share_of_dcf": 1.1024,
+    "diluted_shares_m": 3540.0,
+    "failures": [],
+    "warnings": []
+  },
+  "scenarios": [
+    {
+      "Scenario": "Base",
+      "Status": "OK",
+      "Implied value / share ($)": 29.0495,
+      "Market price ($)": 378.25,
+      "Upside / (downside)": -0.9232,
+      "Cost of equity": 0.1038,
+      "Terminal growth": 0.03,
+      "TV % of DCF value": 1.1024,
+      "FY2030E revenue ($M)": 153474.585,
+      "FY2030E EBITDA margin": 0.1175,
+      "FY2030E net income ($M)": 5309.1902,
+      "FY2030E FCFE ($M)": 10258.6202,
+      "Min. cash & inv. over forecast ($M)": 29197.2636,
+      "Peak revolver ($M)": 0.0
+    },
+    {
+      "Scenario": "Bull",
+      "Status": "OK",
+      "Implied value / share ($)": 87.8325,
+      "Market price ($)": 378.25,
+      "Upside / (downside)": -0.7678,
+      "Cost of equity": 0.1038,
+      "Terminal growth": 0.03,
+      "TV % of DCF value": 0.905,
+      "FY2030E revenue ($M)": 224731.546,
+      "FY2030E EBITDA margin": 0.1795,
+      "FY2030E net income ($M)": 22569.2357,
+      "FY2030E FCFE ($M)": 31641.6609,
+      "Min. cash & inv. over forecast ($M)": 34495.447,
+      "Peak revolver ($M)": 0.0
+    },
+    {
+      "Scenario": "Bear",
+      "Status": "OK",
+      "Implied value / share ($)": 4.1573,
+      "Market price ($)": 378.25,
+      "Upside / (downside)": -0.989,
+      "Cost of equity": 0.1038,
+      "Terminal growth": 0.03,
+      "TV % of DCF value": -0.0682,
+      "FY2030E revenue ($M)": 111130.6363,
+      "FY2030E EBITDA margin": 0.0676,
+      "FY2030E net income ($M)": -2030.9207,
+      "FY2030E FCFE ($M)": 2573.5909,
+      "Min. cash & inv. over forecast ($M)": 27807.1505,
+      "Peak revolver ($M)": 0.0
+    },
+    {
+      "Scenario": "Recession / downside",
+      "Status": "OK",
+      "Implied value / share ($)": 3.0213,
+      "Market price ($)": 378.25,
+      "Upside / (downside)": -0.992,
+      "Cost of equity": 0.1038,
+      "Terminal growth": 0.03,
+      "TV % of DCF value": -0.3775,
+      "FY2030E revenue ($M)": 112637.9238,
+      "FY2030E EBITDA margin": 0.077,
+      "FY2030E net income ($M)": -1672.732,
+      "FY2030E FCFE ($M)": 1493.1893,
+      "Min. cash & inv. over forecast ($M)": 15222.8078,
+      "Peak revolver ($M)": 460.9856
+    }
+  ],
+  "market_implied_what_must_be_true": [
+    {
+      "Lever (moved alone, all else at scenario values)": "Cost of equity",
+      "Model assumption": "10.38%",
+      "Required for $378/share": "3.58%",
+      "Comment": "Discount rate that equates model FCFE with the market price"
+    },
+    {
+      "Lever (moved alone, all else at scenario values)": "Terminal FCFE growth",
+      "Model assumption": "3.00%",
+      "Required for $378/share": "9.80%",
+      "Comment": "Perpetual growth needed (must stay below cost of equity)"
+    },
+    {
+      "Lever (moved alone, all else at scenario values)": "Robotaxi / autonomy revenue, FY2030E",
+      "Model assumption": "$8.0B in FY2030E",
+      "Required for $378/share": "$451B",
+      "Comment": "All years scaled by the same factor; margins unchanged"
+    },
+    {
+      "Lever (moved alone, all else at scenario values)": "Automotive sales cash gross margin (all years)",
+      "Model assumption": "22.0% in FY2030E",
+      "Required for $378/share": "Not achievable within tested range",
+      "Comment": "Parallel shift in every year; value at range limit: $180/share"
+    },
+    {
+      "Lever (moved alone, all else at scenario values)": "Model 3/Y deliveries (all years)",
+      "Model assumption": "1.90M units in FY2030E",
+      "Required for $378/share": "Not achievable within tested range",
+      "Comment": "Scales volumes only; capex held at the scenario path; value at range limit: $323/share"
+    },
+    {
+      "Lever (moved alone, all else at scenario values)": "Energy storage deployed (all years)",
+      "Model assumption": "95 GWh in FY2030E",
+      "Required for $378/share": "2,622 GWh in FY2030E (x27.60)",
+      "Comment": "Scales GWh; price per GWh and margin unchanged"
+    },
+    {
+      "Lever (moved alone, all else at scenario values)": "Services & other growth (all years)",
+      "Model assumption": "14% in FY2030E",
+      "Required for $378/share": "+126 pts per year",
+      "Comment": "Parallel shift in annual growth"
+    },
+    {
+      "Lever (moved alone, all else at scenario values)": "Capital expenditures (all years)",
+      "Model assumption": "$15.0B in FY2030E",
+      "Required for $378/share": "Not achievable within tested range",
+      "Comment": "Lower capex with unchanged growth - an inconsistent, upper-bound test; value at range limit: $70/share"
+    },
+    {
+      "Lever (moved alone, all else at scenario values)": "Terminal capex / D&A",
+      "Model assumption": "1.15x",
+      "Required for $378/share": "Not achievable within tested range",
+      "Comment": "Below 1.0x means the asset base shrinks in perpetuity; value at range limit: $65/share"
+    }
+  ],
+  "tornado_one_at_a_time": [
+    {
+      "Driver": "Automotive sales cash gross margin, ex-D&A (%)",
+      "ID": "gm_auto_sales",
+      "Shock": "2.0 pts",
+      "Low case value": 24.0183,
+      "High case value": 34.0808,
+      "Base value": 29.0495,
+      "Low delta": -5.0313,
+      "High delta": 5.0313,
+      "Range": 10.0625
+    },
+    {
+      "Driver": "SG&A ex-D&A (% of revenue)",
+      "ID": "sga_pct",
+      "Shock": "1.0 pts",
+      "Low case value": 33.189,
+      "High case value": 24.9101,
+      "Base value": 29.0495,
+      "Low delta": 4.1394,
+      "High delta": -4.1394,
+      "Range": 8.2789
+    },
+    {
+      "Driver": "R&D ex-D&A (% of revenue)",
+      "ID": "rd_pct",
+      "Shock": "1.0 pts",
+      "Low case value": 33.189,
+      "High case value": 24.9101,
+      "Base value": 29.0495,
+      "Low delta": 4.1394,
+      "High delta": -4.1394,
+      "Range": 8.2789
+    },
+    {
+      "Driver": "Capital expenditures ($M)",
+      "ID": "capex",
+      "Shock": "10%",
+      "Low case value": 33.1786,
+      "High case value": 24.9205,
+      "Base value": 29.0495,
+      "Low delta": 4.129,
+      "High delta": -4.129,
+      "Range": 8.2581
+    },
+    {
+      "Driver": "Model 3/Y average selling price ($ thousand)",
+      "ID": "asp_3y",
+      "Shock": "10%",
+      "Low case value": 25.9783,
+      "High case value": 32.1208,
+      "Base value": 29.0495,
+      "Low delta": -3.0713,
+      "High delta": 3.0713,
+      "Range": 6.1425
+    },
+    {
+      "Driver": "Model 3/Y deliveries (thousand units)",
+      "ID": "deliveries_3y",
+      "Shock": "10%",
+      "Low case value": 25.9783,
+      "High case value": 32.1208,
+      "Base value": 29.0495,
+      "Low delta": -3.0713,
+      "High delta": 3.0713,
+      "Range": 6.1425
+    },
+    {
+      "Driver": "Services & other revenue growth (%)",
+      "ID": "services_growth",
+      "Shock": "5.0 pts",
+      "Low case value": 27.0431,
+      "High case value": 31.4068,
+      "Base value": 29.0495,
+      "Low delta": -2.0064,
+      "High delta": 2.3573,
+      "Range": 4.3637
+    },
+    {
+      "Driver": "Services & other cash gross margin (%)",
+      "ID": "gm_services",
+      "Shock": "2.0 pts",
+      "Low case value": 27.385,
+      "High case value": 30.7141,
+      "Base value": 29.0495,
+      "Low delta": -1.6645,
+      "High delta": 1.6645,
+      "Range": 3.329
+    },
+    {
+      "Driver": "D&A (% of beginning net fixed assets)",
+      "ID": "da_rate",
+      "Shock": "1.0 pts",
+      "Low case value": 30.3989,
+      "High case value": 27.7925,
+      "Base value": 29.0495,
+      "Low delta": 1.3494,
+      "High delta": -1.257,
+      "Range": 2.6064
+    },
+    {
+      "Driver": "Energy storage deployed (GWh)",
+      "ID": "storage_gwh",
+      "Shock": "10%",
+      "Low case value": 27.7589,
+      "High case value": 30.3402,
+      "Base value": 29.0495,
+      "Low delta": -1.2906,
+      "High delta": 1.2906,
+      "Range": 2.5813
+    },
+    {
+      "Driver": "Energy revenue per GWh deployed ($M/GWh)",
+      "ID": "energy_rev_per_gwh",
+      "Shock": "10%",
+      "Low case value": 27.7589,
+      "High case value": 30.3402,
+      "Base value": 29.0495,
+      "Low delta": -1.2906,
+      "High delta": 1.2906,
+      "Range": 2.5813
+    },
+    {
+      "Driver": "Energy cash gross margin, ex-D&A (%)",
+      "ID": "gm_energy",
+      "Shock": "2.0 pts",
+      "Low case value": 27.9384,
+      "High case value": 30.1607,
+      "Base value": 29.0495,
+      "Low delta": -1.1112,
+      "High delta": 1.1112,
+      "Range": 2.2223
+    },
+    {
+      "Driver": "Other models deliveries incl. Cybercab/Semi (thousand units)",
+      "ID": "deliveries_other",
+      "Shock": "10%",
+      "Low case value": 28.3855,
+      "High case value": 29.7135,
+      "Base value": 29.0495,
+      "Low delta": -0.664,
+      "High delta": 0.664,
+      "Range": 1.328
+    },
+    {
+      "Driver": "Robotaxi / autonomy network revenue ($M)",
+      "ID": "autonomy_rev",
+      "Shock": "10%",
+      "Low case value": 28.4189,
+      "High case value": 29.6801,
+      "Base value": 29.0495,
+      "Low delta": -0.6306,
+      "High delta": 0.6306,
+      "Range": 1.2612
+    },
+    {
+      "Driver": "Payable days (DPO, on cost of revenues)",
+      "ID": "dpo",
+      "Shock": "5.0 days",
+      "Low case value": 28.4822,
+      "High case value": 29.6168,
+      "Base value": 29.0495,
+      "Low delta": -0.5673,
+      "High delta": 0.5673,
+      "Range": 1.1346
+    },
+    {
+      "Driver": "Inventory days (DIO, on cost of revenues)",
+      "ID": "dio",
+      "Shock": "5.0 days",
+      "Low case value": 29.6168,
+      "High case value": 28.4822,
+      "Base value": 29.0495,
+      "Low delta": 0.5673,
+      "High delta": -0.5673,
+      "Range": 1.1346
+    },
+    {
+      "Driver": "Effective tax rate (%)",
+      "ID": "tax_rate",
+      "Shock": "3.0 pts",
+      "Low case value": 29.5609,
+      "High case value": 28.5382,
+      "Base value": 29.0495,
+      "Low delta": 0.5114,
+      "High delta": -0.5114,
+      "Range": 1.0228
+    },
+    {
+      "Driver": "Receivable days (DSO, on revenue)",
+      "ID": "dso",
+      "Shock": "3.0 days",
+      "Low case value": 29.4667,
+      "High case value": 28.6324,
+      "Base value": 29.0495,
+      "Low delta": 0.4171,
+      "High delta": -0.4171,
+      "Range": 0.8343
+    }
+  ],
+  "checks_all_pass": true
+}

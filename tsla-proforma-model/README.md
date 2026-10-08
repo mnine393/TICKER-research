@@ -1,5 +1,15 @@
 # Tesla (TSLA) Pro-forma FCFE Valuation Model
 
+## Decision frame
+
+- **Intended user:** Buy-side portfolio-manager committee. The fund holds no TSLA position.
+- **Decision:** Initiate, watch/defer, or do not initiate TSLA.
+- **Decision horizon:** **TODO: decision horizon**
+- **Valuation date:** 24 September 2026.
+- **Currency and units:** USD millions unless stated otherwise; per-share results are USD; shares are in millions.
+- **Share basis:** 3,540.0M diluted shares (Q2 2026). The 423.7M unearned 2025 CEO Performance Award shares are excluded because they are not yet earned; the app provides a separate toggle to test their inclusion. Source: [`Lab_10_proforma_tsla.md`](../Lab_10_proforma_tsla.md) and `tsla_model/assumptions.py`.
+- **Deliberate exclusions:** Optimus has no modeled revenue; Robotaxi/autonomy is shown as a separate, judgment-based line rather than supported by separately disclosed revenue; unmodeled future strategic equity investments are excluded from FCFE; and the model does not assign a separate value to unreported software/robotics option value. Source: [`Lab_12_presentation_review.md`](../Lab_12_presentation_review.md) and `tsla_model/assumptions.py`.
+
 An educational, fully linked three-statement model and five-year **FCFE** discounted-cash-flow valuation of Tesla, Inc.,
 with a Streamlit dashboard, scenario and sensitivity analysis, automated tests and a formatted Excel export.
 

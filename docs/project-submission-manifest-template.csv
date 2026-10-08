@@ -1,0 +1,13 @@
+item,required,location_or_url,title,duration_or_as_of,timestamp_index,access_checked,frozen_or_commit_id,notes
+Research-Evolution.pdf,yes,,,,,,,TODO: Edition A PDF from Brightspace (unchanged) + Edition B + A-to-B table
+Repository,yes,https://github.com/mnine393/TICKER-research,TICKER-research,as of 2026-09-24 valuation,,,,TODO: confirm instructor/TA access if private; paste final commit
+Visible executed output,yes,tsla-proforma-model/output/visible_output.md,Visible output,2026-09-24,,,,also visible_output.json and TSLA_model.xlsx
+Decision memo or deck,yes,,,,,,,TODO: Decision-Memo.pdf (max 2 pages)
+Validation-and-AI-Use.pdf,yes,docs/validation-and-ai-use.md,,,,,,TODO: finish TODOs then export to PDF
+Video 1,yes,,,,,,,TODO: research evolution <=3:00
+Transcript Video 1,yes,,,,,,,
+Video 2,yes,,,,,,,TODO: code + validation <=5:00
+Transcript Video 2,yes,,,,,,,
+Video 3,yes,,,,,,,TODO: opens with live app demo <=5:00
+Transcript Video 3,yes,,,,,,,
+Optional deployed output,no,,,,,,,
