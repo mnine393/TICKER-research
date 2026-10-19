@@ -68,9 +68,8 @@ Commit: 3bbe9b5 (pushed 10:41 AM)
 
 ### Result
 
-| Before/after output | Actual decision effect | Prediction reconciliation | Diagnosis / why no change | Evidence |
-|---|---|---|---|---|
-| TODO | TODO | TODO | TODO | TODO |
+Before I made the change the value was $29.48 per share, after dropping the amount of cars sold by Tesla in a year, the value went down to $26.36 per share. This model ran on live data from today's Tesla market price of $367.81. Overall, the value drop was 10.6% decrease which is really close to my prediction, and my choice to defer stays the same. Tesla's revenue only dropped by 4.9% since they generate revenue from other products and services, but the value dropped by 10.6% because of Tesla's fixed costs such as the factory spending and depreciation that happen even if their sales decreases.
+
 
 ## Named AI-use register
 
