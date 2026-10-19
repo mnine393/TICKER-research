@@ -61,9 +61,7 @@ not driven by the pro-forma. TODO: ask in Week 7 studio whether FCFE is acceptab
 
 ### Precommit
 
-| Precommit timestamp | Commit | Material input | Old → new (units) | Expected direction | Expected decision effect |
-|---|---|---|---|---|---|
-| TODO | TODO | TODO (e.g. cost of equity, or Model 3/Y deliveries) | TODO | TODO | TODO |
+10/19/2026 10:34 am Model 3/Y deliveries, all forecast years, Tesla sells 1,650k–1,900k cars per year I want to lower this by 10% every year, my expected direction is that Tesla's value per share goes down by about 10% because their sales decrease by 10%, if fewer cars are sold that leads to less revenue which leads to less profit, less cash and a lower value. I still think that my decision will be to defer Tesla if they're selling 10% less cars a year.
 
 ### Result
 
