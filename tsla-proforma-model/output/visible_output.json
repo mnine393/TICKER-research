@@ -13,7 +13,7 @@
     "as_of": "2026-09-23",
     "source": "U.S. Treasury daily par yield curve, 10-year CMT"
   },
-  "cash_flow_convention": "FCFE (free cash flow to equity), discounted at cost of equity",
+  "cash_flow_convention": "FCFE discounted at cost of equity and FCFF discounted at WACC",
   "base_case": {
     "status": "OK",
     "value_per_share": 29.0495,
@@ -24,6 +24,17 @@
     "diluted_shares_m": 3540.0,
     "failures": [],
     "warnings": []
+  },
+  "fcff_base_case": {
+    "status": "OK",
+    "value_per_share": 27.2214,
+    "wacc": 0.1033,
+    "terminal_growth": 0.03,
+    "enterprise_value": 74675.5231,
+    "equity_value": 96363.6981,
+    "terminal_value_share_of_ev": 1.0675,
+    "reverse_wacc_to_market_price": 0.0358,
+    "failures": []
   },
   "scenarios": [
     {

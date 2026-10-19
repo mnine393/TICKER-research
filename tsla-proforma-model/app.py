@@ -165,18 +165,20 @@ def page_summary():
     val = ev.valuation
     price = b.market["price"]["value"]
     st.title("Tesla (TSLA) - Executive summary")
-    st.caption(f"Five-year FCFE DCF (FY2026E-FY2030E) with Gordon-growth terminal value. Scenario: "
+    st.caption(f"Five-year FCFE and FCFF DCFs (FY2026E-FY2030E) with Gordon-growth terminal values. Scenario: "
                f"**{config.SCENARIO_LABELS[st.session_state.scenario]}**. USD millions except per-share figures.")
     if val.status != "OK":
         failure_banner(val)
-    c = st.columns(3) + st.columns(3)
+    fcff = x.get("fcff")
+    c = st.columns(4) + st.columns(3)
     c[0].metric(f"Market price ({b.market['price']['as_of']})", money(price))
-    c[1].metric("Implied value / share", money(val.value_per_share) if val.status == "OK" else "REFUSED")
-    c[2].metric("Upside / (downside)", f"{val.upside:+.1%}" if val.status == "OK" else "n/a")
-    c[3].metric("Cost of equity (CAPM)", f"{val.ke:.2%}", help=f"rf {val.coe['rf']:.2%} + beta {val.coe['beta']:.2f} x ERP {val.coe['erp']:.2%}")
-    c[4].metric("Terminal value % of DCF value", f"{val.tv_share_of_dcf:.0%}" if val.status == "OK" else "n/a",
+    c[1].metric("Implied value / share (FCFE)", money(val.value_per_share) if val.status == "OK" else "REFUSED")
+    c[2].metric("Implied value / share (FCFF)", money(fcff.value_per_share) if fcff and fcff.status == "OK" else "REFUSED")
+    c[3].metric("Upside / (downside)", f"{val.upside:+.1%}" if val.status == "OK" else "n/a")
+    c[4].metric("Cost of equity (CAPM)", f"{val.ke:.2%}", help=f"rf {val.coe['rf']:.2%} + beta {val.coe['beta']:.2f} x ERP {val.coe['erp']:.2%}")
+    c[5].metric("Terminal value % of DCF value", f"{val.tv_share_of_dcf:.0%}" if val.status == "OK" else "n/a",
                 help="PV of terminal value / (PV of forecast FCFE + PV of terminal value). Above 100% means forecast-period FCFE is negative in PV terms.")
-    c[5].metric("Terminal value % of equity value", f"{val.tv_share_of_equity:.0%}" if val.status == "OK" else "n/a",
+    c[6].metric("Terminal value % of equity value", f"{val.tv_share_of_equity:.0%}" if val.status == "OK" else "n/a",
                 help="PV of terminal value / total equity value (which also includes excess cash and other non-operating assets).")
     for w in val.warnings:
         st.warning(w)
@@ -357,7 +359,9 @@ def page_valuation():
     x = get_analysis(b, aset)
     ev = x["evals"][st.session_state.scenario]
     val = ev.valuation
-    st.title(f"FCFE valuation - {config.SCENARIO_LABELS[st.session_state.scenario]}")
+    price = b.market["price"]["value"]
+    fcff = x.get("fcff")
+    st.title(f"FCFE and FCFF valuation - {config.SCENARIO_LABELS[st.session_state.scenario]}")
     if val.status != "OK":
         failure_banner(val)
         return
@@ -409,6 +413,32 @@ def page_valuation():
     st.plotly_chart(charts.fcfe_bars(ev.model.fcfe), width="stretch")
     for w in val.warnings:
         st.warning(w)
+    st.divider()
+    st.subheader("FCFF valuation (enterprise-value approach)")
+    st.caption("FCFF values the operating business before financing at WACC; FCFE values cash left for common shareholders after financing at the cost of equity.")
+    if not fcff or fcff.status != "OK":
+        st.error("FCFF valuation refused: " + "; ".join(fcff.failures if fcff else ["FCFF result was not created"]))
+    else:
+        c1, c2, c3 = st.columns(3)
+        c1.metric("FCFF value / share", money(fcff.value_per_share))
+        c2.metric("WACC", f"{fcff.wacc:.2%}", help=f"Equity weight {fcff.equity_weight:.1%}; debt weight {fcff.debt_weight:.1%}; pre-tax debt cost {fcff.debt_cost:.2%}.")
+        c3.metric("FCFE less FCFF", money(val.value_per_share - fcff.value_per_share))
+        st.dataframe(fcff.pv_table.style.format({c: "{:,.0f}" for c in fcff.pv_table.columns if c not in ("Year", "Discount period (yrs)", "Discount factor")}
+                                                | {"Discount period (yrs)": "{:.2f}", "Discount factor": "{:.4f}"}), hide_index=True, width="stretch")
+        c1, c2 = st.columns(2)
+        with c1:
+            st.subheader(f"{config.TERMINAL_YEAR} FCFF bridge")
+            st.dataframe(fcff.terminal_bridge.style.format({"FY2030E": "{:,.0f}", "FY2031": "{:,.0f}"}), hide_index=True, width="stretch")
+        with c2:
+            st.subheader("Enterprise value to equity bridge")
+            st.dataframe(fcff.equity_bridge.style.format({"USD m": "{:,.0f}"}), hide_index=True, width="stretch")
+        st.subheader("FCFF-to-FCFE reconciliation")
+        st.caption("Residual is shown, not forced to zero, because FCFF is consolidated operating cash flow while FCFE uses parent net income and the model's financing flows. The recurring -$60M residual is net income attributable to noncontrolling interests, which FCFE to common excludes.")
+        st.dataframe(fcff.reconciliation.style.format({c: "{:,.0f}" for c in fcff.reconciliation.columns if c != "Year"}), hide_index=True, width="stretch")
+        if "fcff_wacc_g" in x:
+            st.plotly_chart(charts.heatmap(x["fcff_wacc_g"], "FCFF value/share: WACC x terminal growth", price, "Terminal growth", "WACC"), width="stretch")
+        reverse = x.get("fcff_reverse_wacc")
+        st.info(f"Reverse DCF: WACC needed for FCFF value to equal the ${price:,.2f} market price is {reverse:.2%}." if reverse is not None else "Reverse DCF: market price is outside the modeled WACC search range.")
     st.subheader("Secondary cross-check: trading multiples")
     st.info("Secondary only. Auto and energy peers have very different growth, margin and autonomy profiles, and the market "
             "prices Tesla on expectations far beyond peer multiples. The DCF above is the primary valuation.")

@@ -49,6 +49,7 @@ def main() -> None:
     x = full_analysis(b, a, SCENARIO, VALUATION_DATE)
     ev = x["evals"][SCENARIO]
     v = ev.valuation
+    f = x.get("fcff")
     checks = v.checks if not v.checks.empty else pd.DataFrame()
 
     summary = {
@@ -58,7 +59,7 @@ def main() -> None:
         "data_mode": "offline seed data (tsla_model/data/seed_*.json)",
         "price": {k: b.market["price"].get(k) for k in ("value", "as_of", "source")},
         "risk_free": {k: b.market["risk_free"].get(k) for k in ("value", "as_of", "source")},
-        "cash_flow_convention": "FCFE (free cash flow to equity), discounted at cost of equity",
+        "cash_flow_convention": "FCFE discounted at cost of equity and FCFF discounted at WACC",
         "base_case": {
             "status": v.status,
             "value_per_share": _clean(v.value_per_share),
@@ -69,6 +70,17 @@ def main() -> None:
             "diluted_shares_m": _clean(v.shares),
             "failures": v.failures,
             "warnings": v.warnings,
+        },
+        "fcff_base_case": {
+            "status": f.status if f else "NOT RUN",
+            "value_per_share": _clean(f.value_per_share) if f else None,
+            "wacc": _clean(f.wacc) if f else None,
+            "terminal_growth": _clean(f.g) if f else None,
+            "enterprise_value": _clean(f.enterprise_value) if f else None,
+            "equity_value": _clean(f.equity_value) if f else None,
+            "terminal_value_share_of_ev": _clean(f.tv_share_of_ev) if f else None,
+            "reverse_wacc_to_market_price": _clean(x.get("fcff_reverse_wacc")),
+            "failures": f.failures if f else [],
         },
         "scenarios": _records(x["summary"]),
         "market_implied_what_must_be_true": _records(x["wmbt"]) if "wmbt" in x else [],
@@ -84,8 +96,9 @@ def main() -> None:
         f"{VALUATION_DATE.isoformat()}). USD millions except per-share.",
         "",
         f"- Market price: ${b.market['price']['value']:.2f} (as of {b.market['price']['as_of']})",
-        f"- Base-case value per share: **${v.value_per_share:,.2f}** ({v.upside:+.0%} vs. price)"
+        f"- FCFE base-case value per share: **${v.value_per_share:,.2f}** ({v.upside:+.0%} vs. price)"
         if v.status == "OK" else f"- Base case status: {v.status}",
+        f"- FCFF base-case value per share: **${f.value_per_share:,.2f}** (WACC {f.wacc:.2%})" if f and f.status == "OK" else f"- FCFF status: {f.status if f else 'NOT RUN'}",
         f"- Cost of equity {v.ke:.2%}; terminal growth {v.g:.2%}; terminal value = {v.tv_share_of_dcf:.0%} of DCF value",
         f"- Integrity checks: {'all pass' if v.status == 'OK' else 'FAILED - valuation blocked'}",
         "",
@@ -99,11 +112,20 @@ def main() -> None:
         md += ["", "## One-at-a-time sensitivity (tornado)", "", x["tornado"].to_markdown(index=False, floatfmt=",.4g")]
     if not v.equity_bridge.empty:
         md += ["", "## Equity bridge", "", v.equity_bridge.to_markdown(index=False, floatfmt=",.2f")]
+    if f and f.status == "OK":
+        md += ["", "## FCFF enterprise-value-to-equity bridge", "", f.equity_bridge.to_markdown(index=False, floatfmt=",.2f"),
+               "", "## FCFF-to-FCFE reconciliation", "", "Note: the recurring -$60M residual is net income attributable to noncontrolling interests, which FCFE to common excludes.", "",
+               f.reconciliation.to_markdown(index=False, floatfmt=",.2f")]
+        if "fcff_wacc_g" in x:
+            md += ["", "## FCFF WACC x terminal-growth sensitivity ($/share)", "", x["fcff_wacc_g"].to_markdown(floatfmt=",.2f")]
+        reverse = x.get("fcff_reverse_wacc")
+        md += ["", f"Reverse DCF WACC to equal market price: {reverse:.2%}" if reverse is not None else "",]
     (OUT / "visible_output.md").write_text("\n".join(md) + "\n")
 
     xlsx = build_workbook(b, a, SCENARIO, x["evals"], x, build_source_table(b), historical_table(b))
     (OUT / "TSLA_model.xlsx").write_bytes(xlsx)
-    print(f"Base value/share: {v.value_per_share:.2f}  status={v.status}  -> wrote {OUT}")
+    fcff_text = f"{f.value_per_share:.2f}" if f and f.value_per_share is not None else "n/a"
+    print(f"FCFE value/share: {v.value_per_share:.2f}; FCFF value/share: {fcff_text}; status={v.status}/{f.status if f else 'NOT RUN'}  -> wrote {OUT}")
 
 
 if __name__ == "__main__":

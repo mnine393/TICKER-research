@@ -96,6 +96,7 @@ def build_workbook(bundle, aset, scenario: str, evals: dict, extras: dict, sourc
     ws = wb.active
     ws.title = "Cover"
     r = _title(ws, 1, "Tesla, Inc. (TSLA) - Pro-forma FCFE valuation model (educational)")
+    fcff = extras.get("fcff")
     lines = [
         f"Generated: {datetime.now().isoformat(timespec='minutes')}",
         f"Scenario exported in detail: {config.SCENARIO_LABELS[scenario]}",
@@ -103,6 +104,7 @@ def build_workbook(bundle, aset, scenario: str, evals: dict, extras: dict, sourc
         f"Market price: ${bundle.market['price']['value']:,.2f} as of {bundle.market['price']['as_of']}",
         f"Implied value per share ({config.SCENARIO_LABELS[scenario]}): "
         + (f"${val.value_per_share:,.2f}" if val.status == "OK" else "NOT AVAILABLE - model checks failed"),
+        "FCFF implied value per share: " + (f"${fcff.value_per_share:,.2f}" if fcff and fcff.status == "OK" else "NOT AVAILABLE - model checks failed"),
         "",
         "DISCLAIMER: " + config.DISCLAIMER,
         "",
@@ -203,6 +205,15 @@ def build_workbook(bundle, aset, scenario: str, evals: dict, extras: dict, sourc
                 ws.cell(row=r, column=1, value=w_)
                 r += 1
             r += 1
+    if fcff and fcff.status == "OK":
+        r = _write_table(ws, fcff.pv_table, r, "Discounted FCFF (WACC)", col_formats={"Discount factor": "0.0000", "Discount period (yrs)": "0.00"})
+        r = _write_table(ws, fcff.terminal_bridge, r, "2031 terminal FCFF bridge")
+        r = _write_table(ws, fcff.equity_bridge, r, "FCFF enterprise-value-to-equity bridge")
+        r = _write_table(ws, fcff.reconciliation, r, "FCFF-to-FCFE reconciliation (residual is not forced to zero)",
+                         note="The recurring -$60M residual is net income attributable to noncontrolling interests, which FCFE to common excludes.")
+        if "fcff_wacc_g" in extras:
+            r = _write_table(ws, extras["fcff_wacc_g"], r, "FCFF WACC x terminal growth ($/share)", index=True,
+                             col_formats={c: "$#,##0.00" for c in extras["fcff_wacc_g"].columns})
     if "multiples" in extras:
         _write_table(ws, extras["multiples"], r, "SECONDARY cross-check: trading multiples (not the primary valuation)",
                      col_formats={"Multiple": "0.0x", "Implied value per share": "$#,##0.00"})

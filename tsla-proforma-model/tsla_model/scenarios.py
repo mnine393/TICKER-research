@@ -247,6 +247,7 @@ def what_must_be_true(b, a, scenario="base", valuation_date=None, target: float 
 # ---------------------------------------------------------------------------------------------
 def full_analysis(b: DataBundle, a: AssumptionSet, scenario: str = "base", valuation_date: date | None = None) -> dict:
     from .valuation import multiples_crosscheck
+    from .fcff import reverse_wacc, run_fcff, wacc_g_grid
 
     evals = run_all_scenarios(b, a, valuation_date)
     ev = evals[scenario]
@@ -255,6 +256,10 @@ def full_analysis(b: DataBundle, a: AssumptionSet, scenario: str = "base", valua
     out["bridge"] = value_bridge(b, a, evals, valuation_date)
     if ev.valuation.status != "OK":
         return out
+    out["fcff"] = run_fcff(b, a, ev.model, scenario, valuation_date)
+    if out["fcff"].status == "OK":
+        out["fcff_wacc_g"] = wacc_g_grid(b, a, ev.model, scenario, valuation_date)
+        out["fcff_reverse_wacc"] = reverse_wacc(b, a, ev.model, scenario, valuation_date)
     out["multiples"] = multiples_crosscheck(b, a, ev.model, ev.valuation)
     out["ke_g"] = ke_g_grid(b, a, scenario, valuation_date)
     out["tornado"] = tornado(b, a, scenario, valuation_date)
