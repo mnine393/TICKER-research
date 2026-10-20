@@ -10,13 +10,14 @@
 
 ## 1. Recommendation: WATCH / DEFER. Do not initiate at the current price.
 
-The fund holds no TSLA position and should not open one now. My five-year pro-forma model values the equity at
-**about $27–$29 per share in the base case** (FCFF $27.22, FCFE $29.05), against a market price of **$378.25**
-(September 24, 2026). The price was $367.81 on October 19, 2026, which does not change the conclusion. Even the bull
-case ($87.83) is about 77% below the market price.
+This fund does not hold a TSLA position and, based on our model, should not open one now. The five-year pro-forma
+model values the equity at **about $27 to $29 per share in the base case** (FCFF $27.22, FCFE $29.05), against a market
+price of **$378.25** as of September 24, 2026. The price was $367.81 on October 19, 2026, which does not change the
+conclusion: even our best case, the bull case at $87.83, is about 77% below the market price.
 
-I recommend **watch/defer** rather than "do not initiate" because the gap comes from autonomy and AI value that Tesla
-does not yet report. The triggers in Section 6 tell us when to re-open the case.
+With this said, I recommend **watch/defer** rather than "do not initiate," because the gap comes from autonomy, like
+robotaxis, and AI value that Tesla does not yet report. The triggers in Section 6 tell us whether or not to reopen the
+case and review it again.
 
 ## 2. Valuation range (not a point estimate)
 
@@ -66,24 +67,29 @@ values something neither captures, and that gap is the decision.
 
 ## 6. Risks and triggers
 
-**What would move us to INITIATE:**
+**What would move us to INITIATE (buy):**
 
-- Tesla starts **reporting robotaxi revenue separately**, and it is scaling toward tens of billions of dollars.
-- **Capital spending guidance falls back** toward depreciation (about $12B) after 2027.
-- **Car cash gross margin holds above 23%.** Each 2 points is worth about $5 per share in the model.
-- The **market price falls toward our bull value** (about $90).
+- Tesla starts **reporting robotaxi revenue separately**, and it is scaling toward billions of dollars from this
+  business.
+- The **market price falls toward our bull value**, which is about $90.
+- Tesla **cuts its spending on factories and AI (capex) back to about $12B a year** after 2027. Spending over $25B in
+  2026 is why its cash flow is negative for two years; spending less leaves more cash for shareholders.
+- Tesla's **profit on each car stays above 23 cents per dollar of sales** (car cash gross margin above 23%). This is our
+  biggest driver: every extra 2 cents per dollar adds about $5 per share in our model.
 
 **What would move us to DO NOT INITIATE:**
 
-- Model 3/Y deliveries fall below **1.5M** a year.
-- Cash falls to the model's minimum-cash floor (15% of revenue), or Tesla draws its revolver.
-- Energy gross margins fall below **25%**.
+- Model 3/Y deliveries fall below **1.5 million** a year.
+- Cash falls below the model's **minimum-cash floor of 15% of revenue**, or Tesla draws its revolver.
+- Energy gross margins fall below the **25%** mark.
 
 **Biggest model risks:**
 
-- Robotaxi revenue and margins are the judgment; Tesla discloses none.
-- The terminal value carries most of the value.
-- Tesla does not disclose prices by vehicle model.
+- Robotaxi revenue and margins are just our judgment, which Tesla does not disclose.
+- Tesla does not disclose prices by vehicle model, so it is sometimes hard to see what drives automotive revenue.
+- **Most of the value comes from after 2030** (the terminal value). Because Tesla spends so much in 2026–27, those
+  years are worth less than zero, so almost all of the value depends on our guess about 2030 and beyond. If that guess
+  is wrong, the whole answer moves.
 
 ## 7. Committee ask
 
