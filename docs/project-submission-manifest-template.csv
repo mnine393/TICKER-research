@@ -1,13 +1,13 @@
 item,required,location_or_url,title,duration_or_as_of,timestamp_index,access_checked,frozen_or_commit_id,notes
-Research-Evolution.pdf,yes,docs/research-evolution.pdf,Research Evolution - Tesla (TSLA),2026-10-19,,yes,FINAL_COMMIT,Edition A (Sept 3 2026 report; commit e8e2550; AI-assisted and disclosed) reproduced unchanged + Edition B + A-to-B table
-Repository,yes,https://github.com/mnine393/TICKER-research,TICKER-research,valuation date 2026-09-24,,yes,FINAL_COMMIT,Project of record: tsla-proforma-model/
-Visible executed output,yes,tsla-proforma-model/output/visible_output.md,Visible output,2026-09-24,,yes,FINAL_COMMIT,also visible_output.json and TSLA_model.xlsx; FCFE $29.05 / FCFF $27.22 per share
-Decision memo or deck,yes,docs/decision-memo.pdf,Decision Memo - Tesla (TSLA),2026-10-19,,yes,FINAL_COMMIT,Recommendation: WATCH / DEFER
-Validation-and-AI-Use.pdf,yes,docs/validation-and-ai-use.md,Validation and AI Use - Tesla (TSLA),2026-10-19,,yes,FINAL_COMMIT,Locked prediction commit 3bbe9b5 (pre-run) and a851d14 (result)
+Research-Evolution.pdf,yes,docs/research-evolution.pdf,Research Evolution - Tesla (TSLA),2026-10-19,,yes,3ddeee6,Edition A (Sept 3 2026 report; commit e8e2550; AI-assisted and disclosed) reproduced unchanged + Edition B + A-to-B table
+Repository,yes,https://github.com/mnine393/TICKER-research,TICKER-research,valuation date 2026-09-24,,yes,3ddeee6,Project of record: tsla-proforma-model/
+Visible executed output,yes,tsla-proforma-model/output/visible_output.md,Visible output,2026-09-24,,yes,3ddeee6,also visible_output.json and TSLA_model.xlsx; FCFE $29.05 / FCFF $27.22 per share
+Decision memo or deck,yes,docs/decision-memo.pdf,Decision Memo - Tesla (TSLA),2026-10-19,,yes,3ddeee6,Recommendation: WATCH / DEFER
+Validation-and-AI-Use.pdf,yes,docs/validation-and-ai-use.md,Validation and AI Use - Tesla (TSLA),2026-10-19,,yes,3ddeee6,Locked prediction commit 3bbe9b5 (pre-run) and a851d14 (result)
 Video 1,yes,https://youtu.be/leoX3TWMBQU,FIN 43900 Project 1 – TSLA – Video 1 Research Evolution,2:27,0:08 Edition A disclosure; 0:42 change table; 0:52 capex guidance change; 1:42 AI output check (tests run live),yes,,Unlisted
-Transcript Video 1,yes,docs/transcript-video-1.txt,Transcript Video 1,2:27,,yes,FINAL_COMMIT,Corrected from YouTube captions
+Transcript Video 1,yes,docs/transcript-video-1.txt,Transcript Video 1,2:27,,yes,3ddeee6,Corrected from YouTube captions
 Video 2,yes,https://youtu.be/2k47ViRNU58,FIN 43900 Project 1 – TSLA – Video 2 Code Walkthrough,4:56,0:19 data files; 1:06 assumptions; 1:40 statements; 2:12 checks; 2:41 FCFF valuation; 3:20 tests + export reproduce; 3:51 locked changed-input test; 4:42 limitation,yes,,Unlisted
-Transcript Video 2,yes,docs/transcript-video-2.txt,Transcript Video 2,4:56,,yes,FINAL_COMMIT,Corrected from YouTube captions
+Transcript Video 2,yes,docs/transcript-video-2.txt,Transcript Video 2,4:56,,yes,3ddeee6,Corrected from YouTube captions
 Video 3,yes,https://youtu.be/1OxLunhvZKE,FIN 43900 Project 1 – TSLA – Video 3 Committee Presentation,4:20,0:30 live demo: move driver; 1:27 reset to base; 1:33 failing check (capex x2 refused); 2:22 recommendation; 2:38 range; 2:55 what must be true; 3:25 biggest risk; 3:40 triggers; 4:03 committee ask,yes,,Unlisted
-Transcript Video 3,yes,docs/transcript-video-3.txt,Transcript Video 3,4:20,,yes,FINAL_COMMIT,Corrected from YouTube captions
+Transcript Video 3,yes,docs/transcript-video-3.txt,Transcript Video 3,4:20,,yes,3ddeee6,Corrected from YouTube captions
 Optional deployed output,no,,,,,,,Not deployed; app runs locally (python -m streamlit run app.py)

@@ -6,7 +6,7 @@
 
 - **Decision and user:** buy-side PM committee. Should the fund initiate a TSLA position, put it on watch/defer, or not initiate?
 - **Project of record:** `tsla-proforma-model/` (Streamlit app plus the `tsla_model` engine)
-- **Repository commit at freeze:** TODO (Miles): paste the final commit hash
+- **Repository commit at freeze:** `3ddeee6` (2026-10-19; content frozen for submission)
 - **Valuation date:** 2026-09-24. **Price:** $378.25 (Yahoo/Nasdaq, as of 2026-09-24). **Risk-free rate:** 5.11% (Treasury 10y CMT, 2026-09-23)
 - **Filing cutoff:** 10-K FY2023–FY2025 and 10-Q Q2 2026 (acc. 0001628280-26-049270)
 - **Environment:** Python 3.10+, `tsla-proforma-model/requirements.txt`, offline seed data
