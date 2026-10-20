@@ -4,6 +4,7 @@
 **Current answer:** WATCH / DEFER. Do not initiate at the current market price. Supporting records are in `docs/`.
 **Valuation date:** 24 Sep 2026 · **Currency:** USD millions except per-share figures · **Share basis:** diluted,
 3,540.0M shares (unearned 2025 CEO award shares excluded).
+**Valuation methods:** five-year FCFE at the cost of equity and FCFF at WACC, each with a 2031 Gordon-growth terminal value.
 
 ## Start here
 
@@ -26,9 +27,9 @@ cd tsla-proforma-model
 python -m venv .venv
 source .venv/bin/activate            # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m pytest -q                  # expect: 66 passed
-python export_visible_output.py      # rewrites output/ ; expect "Base value/share: 29.05  status=OK"
-streamlit run app.py                 # opens the app at http://localhost:8501
+python -m pytest -q                  # expect: 71 passed
+python export_visible_output.py      # rewrites output/ ; expect "FCFE value/share: 29.05; FCFF value/share: 27.22; status=OK/OK"
+python -m streamlit run app.py       # opens the app at http://localhost:8501
 ```
 
 ## Lab history (superseded and kept for evidence)

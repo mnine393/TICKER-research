@@ -1,0 +1,37 @@
+FIN 43900 Project 1 - Tesla (TSLA) - Video 3: Investment Committee Presentation
+Speaker: Miles Nine
+Video: https://youtu.be/1OxLunhvZKE   Duration: 4:20
+Corrected transcript (from YouTube auto-captions; names, terms and numbers corrected)
+
+0:00 Hi, I'm Miles Nine, and today I'm going to walk you through the Tesla tool that I've built and then give you my recommendation.
+0:08 This is the main page. Up top you can see Tesla's stock price was about $378.
+0:15 And right next to that is what my model says the stock is worth, which is about $29 a share. So,
+0:25 my value is far below what the market is saying.
+0:30 Let me show you how anyone on our team can test their own ideas. On the assumptions page,
+0:39 I'll use the Quick adjust to cut Model 3 and Model Y sales by 10% every year.
+0:49 As you can see, your drivers here, Model 3/Y deliveries. So, let's cut this by 10%.
+0:57 And hit apply.
+1:04 Back on the main page, we'll see the value dropped from about $29 to about $26. That's around a 10%
+1:14 drop, even though the revenue only falls about 5%. The reason is that Tesla's factory spending and depreciation stay the same even when it sells fewer cars.
+1:27 So now I'll hit reset, and we're back to $29.
+1:33 The next assumption I want to run is to show you what happens when there's
+1:41 a bad input. I'll double Tesla's spending on factories and equipment. So, we'll go back down here to Quick adjust,
+1:49 change the driver to capital expenditures, and we'll multiply this by two.
+2:02 Hit apply.
+2:06 Now, the model refuses to give you a value. It says valuation refused, because Tesla would run out of its safe
+2:14 level of cash even after borrowing everything it can. So, the tool won't give you a number you can't trust.
+2:22 I'll reset it, and everything's working again. So, here's my recommendation:
+2:31 wait and watch. We should not buy Tesla at today's stock price.
+2:38 The table shows my range. In a recession, Tesla is worth about $3 a share. My base case, about $29. And even
+2:47 in my best case, about $88. All of them are far below that $378 number.
+2:55 So, what is the market paying for? We'll scroll down here. So, what would have to be true for today's price?
+3:05 For today's price to make sense, Tesla would need about $451 billion a year
+3:11 from robotaxis by 2030. My model has them making about $8 billion. So, the
+3:18 stock price is a bet on robotaxis and AI, not Tesla's business today. My
+3:25 biggest risk is spending. Tesla plans to spend over $25 billion in 2026, three times last year's. That makes the next
+3:34 two years negative, and most of the value depends on long-term guesses.
+3:40 So, we'll scroll back up. I would change my mind and buy if Tesla starts reporting
+3:48 robotaxi revenue in the billions, or the price falls closer to $90.
+3:57 I would rule it out if car sales drop below 1.5 million a year. So my ask is
+4:03 to approve wait and watch: no position now, and we will check again after Tesla's next quarterly report comes out,
+4:12 and we'll rerun our model and see where we stand. Thank you.

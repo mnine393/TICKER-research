@@ -26,7 +26,7 @@ For the current model, the policy is applied in two layers:
 
 | Multiple | Definition | Eligibility and interpretation |
 |---|---|---|
-| **EV / Revenue** (enterprise-value multiple) | **EV = market capitalization + debt − cash**; **EV/Revenue = EV ÷ latest fiscal-year revenue.** The model constructs EV from the peer market-cap and debt fields and uses `revenue_lfy` in `valuation.py:257-269`. | Available for the selected peer set when consistent market and financial fields exist. It is useful for loss-making firms but does not control for margins, growth, or reinvestment needs. |
+| **EV / Revenue** (enterprise-value multiple) | **EV = market capitalization + debt**; **EV/Revenue = EV ÷ latest fiscal-year revenue.** The model constructs EV from the peer market-cap and debt fields and uses `revenue_lfy` in `valuation.py:257-269`. Peer cash is not subtracted because the current peer data set and code do not include it. | Available for the selected peer set when consistent market and financial fields exist. It is useful for loss-making firms but does not control for margins, growth, reinvestment needs, or peer cash balances; this is a stated limitation of the secondary cross-check. |
 | **P/E** (equity-value multiple) | **P/E = market price ÷ diluted EPS**, equivalently **market capitalization ÷ net income attributable to common shareholders.** `valuation.py:267-270` excludes non-positive net income. | Use only for profitable peers. Do not add cash or subtract debt from a P/E-derived equity value; Lab 07 explains that P/E already prices common equity. |
 
 The current model labels multiples a secondary cross-check rather than an averaged target price. See `tsla_model/valuation.py` and [`Lab_12_presentation_review.md`](../Lab_12_presentation_review.md).

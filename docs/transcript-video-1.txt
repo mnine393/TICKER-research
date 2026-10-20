@@ -1,0 +1,23 @@
+FIN 43900 Project 1 - Tesla (TSLA) - Video 1: Research Evolution
+Speaker: Miles Nine
+Video: https://youtu.be/leoX3TWMBQU   Duration: 2:27
+Corrected transcript (from YouTube auto-captions; names, terms and numbers corrected)
+
+0:01 Hi, I'm Miles Nine. This is Video 1 for my Tesla project, How My Thinking Changed.
+0:08 So, first a disclosure. My Edition A, which is the September 3rd report, was written with the help of ChatGPT and
+0:17 Codex. I didn't yet know that this had to be done without AI, and I haven't changed it in any way. I emailed Becket the TA to let him know this.
+0:28 So looking at my answer from Edition A, it was watch/defer.
+0:34 But this was just because I didn't have enough information to yet value Tesla. Now moving on to Edition B,
+0:42 looking at my change table, my thesis is still to watch and defer, but what changed behind it is the reasoning.
+0:52 The biggest change came from Tesla's own reports. Its annual report said it would spend over $20 billion on
+1:00 factories and equipment in 2026, which is shown down here.
+1:05 Then its quarterly report raised that to over $25 billion.
+1:13 I checked that myself on page 30. That spending makes two years of cash flow negative, which is the main reason that
+1:20 my value dropped from about $40 to about $27 to $29.
+1:27 I also now put a number on robotaxis.
+1:31 The stock price only makes sense, as you can see, if Tesla makes about $451 billion a year from them by 2030.
+1:42 Now, one AI output that I checked: Codex built part of my valuation, and when I tested
+1:52 it, 11 out of 71 tests failed. Codex was able to fix it, but it said it couldn't run the tests itself, so I
+2:01 didn't trust it yet. Using this code, Python and pytest, all 71 now pass, as you can see.
+2:12 So, the AI made a mistake. It was corrected, and I only accepted it after checking it myself.
+2:20 So, thank you for watching, and I'll see you in part two.

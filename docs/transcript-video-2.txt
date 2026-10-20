@@ -1,0 +1,41 @@
+FIN 43900 Project 1 - Tesla (TSLA) - Video 2: Code Walkthrough
+Speaker: Miles Nine
+Video: https://youtu.be/2k47ViRNU58   Duration: 4:56
+Corrected transcript (from YouTube auto-captions; names, terms and numbers corrected)
+
+0:01 Hi, I'm Miles Nine. This is my Video 2, where I walk through the code behind Tesla's valuation. The main project is this folder, the tsla-proforma-model.
+0:12 I'll show how the data flows from Tesla's reports to a value per share, how to run it yourself, and how I tested
+0:19 it. So step one is the data,
+0:29 and this file holds every number I took from Tesla's reports: three annual reports and the
+0:38 latest quarterly report. Each line has its source, like the report and its page number.
+0:48 This file actually loads the data. It can also check my numbers against the government's official filing
+0:57 database. When I ran that check, all 176 numbers matched.
+1:06 Step two is my assumptions about the future. Open the assumptions page.
+1:16 Every assumption has a label, as you can see: history, guidance from the
+1:22 company, or my own judgment, plus a reason. For example, this one is spending on factories and equipment.
+1:31 It's labeled guidance because Tesla itself said it would spend over $25 billion in 2026.
+1:40 As you can see, step three builds the financial
+1:48 statements. This file builds five years of the income statement, the balance sheet and the cash flow statement.
+1:56 Revenue is pulling from pieces: cars sold times price, energy storage, services, and robotaxis. Cash is calculated from the cash flow statement.
+2:08 This is down here, the cash flow statement.
+2:12 Nothing on the balance sheet is forced to balance. Step four is the checks.
+2:22 Every year the model checks that assets equal liabilities plus equity,
+2:27 that cash matches the cash flow statement, and that cash never drops below a safe minimum. If any check fails, the
+2:35 model refuses to give a value, and it won't show a number that it can't trust.
+2:41 So this is that. Step five is the valuation. Let's go over there.
+2:49 This file takes the cash the business makes for everyone who funded it and discounts it at about 10.3%,
+2:58 which is the average cost of Tesla's funding. Then it adds Tesla's extra cash, subtracts its debt, and divides by the
+3:05 number of shares. That gives about $27.22 a share. A second method, in
+3:13 valuation.py, looks at shareholders and gives about $29.05.
+3:20 They're close because Tesla has very little debt. I'll now show you where I got these numbers and how that worked by running this code.
+3:33 And it'll show you, one, that every one of my tests passes. And then here you're
+3:39 going to see that value per share of $27.22, and also the value per share of $29.05 that I was just talking about.
+3:51 All right, let's bring it all home and test my riskiest claim, which is here.
+4:02 My riskiest claim is that Tesla is worth far less than its stock price, mostly
+4:09 because of how much it spends. So before running anything, I wrote down my prediction and saved it to GitHub. I
+4:16 predicted that if Tesla sold 10% fewer cars, the value would drop by about 10%.
+4:22 Then you see my result: when I ran it, the value dropped about 10.6%. Very close.
+4:28 And my decision stayed the same. The value fell more than revenue because Tesla's factory spending and
+4:36 depreciation stay the same even when sales go down.
+4:42 The biggest limitation comes after 2030 because Tesla's heavy spending makes the first two negatives.
+4:49 So, the answer depends a lot on my guesses about the long run. Thank you for watching.
