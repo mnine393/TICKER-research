@@ -2,6 +2,8 @@
 
 from math import sqrt
 
+import pandas as pd
+
 
 # EDITABLE INPUTS -----------------------------------------------------------
 # Returns and volatilities are written as decimals: 3.5% is 0.035.
@@ -22,6 +24,13 @@ CORRELATION = (
 
 OBJECTIVE_RETURN = 0.065
 RESERVE_ELIGIBLE_SLEEVES = ("Treasury bills", "Treasury 10-year note")
+
+# Names used by the Streamlit learning demonstration.  These aliases deliberately
+# point to the same inputs that the command-line example uses.
+MERIDIAN_SLEEVES = SLEEVES
+MERIDIAN_CORRELATION = CORRELATION
+MERIDIAN_OBJECTIVE_RETURN = OBJECTIVE_RETURN
+MERIDIAN_RESERVE_ELIGIBLE_SLEEVES = RESERVE_ELIGIBLE_SLEEVES
 
 
 def sleeve_names(sleeves):
@@ -114,6 +123,98 @@ def reserve_eligible_weight(weights, names, eligible_names):
 def meets_objective(portfolio_return, objective_return):
     """Return whether expected return reaches the stated objective."""
     return portfolio_return >= objective_return
+
+
+def search_long_only_mix(sleeves, correlation, objective_return, eligible_names,
+                         minimum_reserve_weight, step=0.05):
+    """Return the lowest-volatility feasible long-only mix on a fixed weight grid.
+
+    Every candidate has non-negative weights that add to 100%.  With the default
+    five-point grid, four sleeves produce 1,771 candidates.  ``None`` means no
+    candidate met both the return objective and the reserve minimum.
+    """
+    if not 0 < step <= 1 or round(1 / step) * step != 1:
+        raise ValueError("Step must divide 100% exactly, such as 0.05 for five-point steps.")
+    if not 0 <= minimum_reserve_weight <= 1:
+        raise ValueError("Minimum reserve weight must be between 0% and 100%.")
+    if len(sleeves) == 0:
+        raise ValueError("At least one sleeve is required.")
+    if len(correlation) != len(sleeves):
+        raise ValueError("Correlation table size must match the number of sleeves.")
+    validate_correlation_table(correlation)
+
+    names = sleeve_names(sleeves)
+    returns = expected_returns(sleeves)
+    covariance = build_covariance_matrix(correlation, volatilities(sleeves))
+    units = round(1 / step)
+    best = None
+
+    def consider(prefix, remaining, positions_left):
+        nonlocal best
+        if positions_left == 1:
+            weight_units = prefix + (remaining,)
+            weights = tuple(unit * step for unit in weight_units)
+            candidate_return = portfolio_expected_return(weights, returns)
+            candidate_reserve = reserve_eligible_weight(weights, names, eligible_names)
+            if candidate_return + 1e-12 < objective_return or candidate_reserve + 1e-12 < minimum_reserve_weight:
+                return
+            candidate_volatility = portfolio_volatility(weights, covariance)
+            candidate = {
+                "weights": weights,
+                "expected_return": candidate_return,
+                "volatility": candidate_volatility,
+                "reserve_eligible_weight": candidate_reserve,
+            }
+            if best is None or candidate_volatility < best["volatility"] - 1e-12:
+                best = candidate
+            return
+        for weight_units in range(remaining + 1):
+            consider(prefix + (weight_units,), remaining - weight_units, positions_left - 1)
+
+    consider((), units, len(sleeves))
+    return best
+
+
+def estimate_from_monthly_prices(prices, last_36_months=False):
+    """Estimate annual inputs from a date-first, oldest-first monthly-price table.
+
+    Monthly simple returns are calculated from adjacent prices.  Expected returns
+    are the monthly arithmetic means times 12; volatility is sample monthly
+    standard deviation times square root of 12; correlations use those returns.
+    """
+    table = prices.copy()
+    if table.shape[1] < 2:
+        raise ValueError("The CSV needs a date column followed by at least one ticker column.")
+    date_column = table.columns[0]
+    parsed_dates = pd.to_datetime(table[date_column], errors="coerce")
+    if parsed_dates.isna().any() or not parsed_dates.is_monotonic_increasing or parsed_dates.duplicated().any():
+        raise ValueError("The first column must contain unique dates in oldest-first order.")
+    price_columns = list(table.columns[1:])
+    numeric_prices = table[price_columns].apply(pd.to_numeric, errors="coerce")
+    if numeric_prices.isna().any().any() or (numeric_prices <= 0).any().any():
+        raise ValueError("Each ticker price must be a positive number with no missing values.")
+    monthly_returns = numeric_prices.pct_change(fill_method=None).iloc[1:]
+    if last_36_months:
+        monthly_returns = monthly_returns.tail(36)
+    if len(monthly_returns) < 2:
+        raise ValueError("At least three monthly price rows are required to estimate volatility and correlation.")
+    return {
+        "names": tuple(price_columns),
+        "returns": tuple((monthly_returns.mean() * 12).tolist()),
+        "volatilities": tuple((monthly_returns.std(ddof=1) * sqrt(12)).tolist()),
+        "correlation": tuple(tuple(row) for row in monthly_returns.corr().to_numpy()),
+        "monthly_returns": monthly_returns,
+    }
+
+
+def estimate_from_csv(csv_source, last_36_months=False):
+    """Read a monthly-price CSV and return annualized estimates for the app or a script."""
+    return estimate_from_monthly_prices(pd.read_csv(csv_source), last_36_months=last_36_months)
+
+
+# Clear names for callers that prefer a verb describing the result.
+find_lowest_volatility_mix = search_long_only_mix
+search_long_only_mixes = search_long_only_mix
 
 
 def define_portfolios(volatility):
