@@ -58,9 +58,14 @@ The three checks all pass:
 
 ## My decision
 
+I trust Buffett's verdict on COST, every number came from Cosco's 10-K through code. All 3 checks passed. The app found no numbers that the script did not print. It only judges 5 years of business quality not the price.
 
 ## Learn
 
+A skill is a folder with a SKILL.md file. Its name and description tell the AI when to use it. The instructions and the script the it how. The ai only reads the name and description until a request matches. This keeps it from loading every skill's full instructions into every chat. The numbersbelong in code since the code gives the same answer from the same filing everytime. It also shows the sourse tag, while a model can guess or pull numbers frm random websites, like the fresh chat did. 
 
 ## Reflect
 
+My skill makes the data, the rules, the calculations and the three checks the same every time. It leaves only the judgment to the model: own, watch or pass, and how to explain it.
+
+“Not found” is honest. It tells the reader the 10-K didn’t have that number, like JPMorgan’s capital spending. An estimate would look like a real number, slip into the checks and give a pass or fail the data can’t support.
