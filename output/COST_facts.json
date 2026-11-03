@@ -1,0 +1,194 @@
+{
+  "ticker": "COST",
+  "cik": "0000909832",
+  "company_name": "COSTCO WHOLESALE CORP /NEW",
+  "source": "SEC EDGAR Company Facts; 10-K filings only",
+  "years": [
+    {
+      "fiscal_year_end": "2022-08-28",
+      "revenue": {
+        "value": 226954000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "display": "$226,954.0 million"
+      },
+      "net_income": {
+        "value": 5844000000,
+        "tag": "NetIncomeLoss",
+        "display": "$5,844.0 million"
+      },
+      "operating_cash_flow": {
+        "value": 7392000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "display": "$7,392.0 million"
+      },
+      "capital_spending": {
+        "value": 3891000000,
+        "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "display": "$3,891.0 million"
+      },
+      "equity": {
+        "value": 20642000000,
+        "tag": "StockholdersEquity",
+        "display": "$20,642.0 million"
+      },
+      "roe": {
+        "value": 0.2831121015405484,
+        "display": "28.3%"
+      },
+      "owner_earnings": {
+        "value": 3501000000,
+        "display": "$3,501.0 million"
+      }
+    },
+    {
+      "fiscal_year_end": "2023-09-03",
+      "revenue": {
+        "value": 242290000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "display": "$242,290.0 million"
+      },
+      "net_income": {
+        "value": 6292000000,
+        "tag": "NetIncomeLoss",
+        "display": "$6,292.0 million"
+      },
+      "operating_cash_flow": {
+        "value": 11068000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "display": "$11,068.0 million"
+      },
+      "capital_spending": {
+        "value": 4323000000,
+        "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "display": "$4,323.0 million"
+      },
+      "equity": {
+        "value": 25058000000,
+        "tag": "StockholdersEquity",
+        "display": "$25,058.0 million"
+      },
+      "roe": {
+        "value": 0.2510974539069359,
+        "display": "25.1%"
+      },
+      "owner_earnings": {
+        "value": 6745000000,
+        "display": "$6,745.0 million"
+      }
+    },
+    {
+      "fiscal_year_end": "2024-09-01",
+      "revenue": {
+        "value": 254453000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "display": "$254,453.0 million"
+      },
+      "net_income": {
+        "value": 7367000000,
+        "tag": "NetIncomeLoss",
+        "display": "$7,367.0 million"
+      },
+      "operating_cash_flow": {
+        "value": 11339000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "display": "$11,339.0 million"
+      },
+      "capital_spending": {
+        "value": 4710000000,
+        "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "display": "$4,710.0 million"
+      },
+      "equity": {
+        "value": 23622000000,
+        "tag": "StockholdersEquity",
+        "display": "$23,622.0 million"
+      },
+      "roe": {
+        "value": 0.3118702904072475,
+        "display": "31.2%"
+      },
+      "owner_earnings": {
+        "value": 6629000000,
+        "display": "$6,629.0 million"
+      }
+    },
+    {
+      "fiscal_year_end": "2025-08-31",
+      "revenue": {
+        "value": 275235000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "display": "$275,235.0 million"
+      },
+      "net_income": {
+        "value": 8099000000,
+        "tag": "NetIncomeLoss",
+        "display": "$8,099.0 million"
+      },
+      "operating_cash_flow": {
+        "value": 13335000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "display": "$13,335.0 million"
+      },
+      "capital_spending": {
+        "value": 5498000000,
+        "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "display": "$5,498.0 million"
+      },
+      "equity": {
+        "value": 29164000000,
+        "tag": "StockholdersEquity",
+        "display": "$29,164.0 million"
+      },
+      "roe": {
+        "value": 0.27770539020710466,
+        "display": "27.8%"
+      },
+      "owner_earnings": {
+        "value": 7837000000,
+        "display": "$7,837.0 million"
+      }
+    },
+    {
+      "fiscal_year_end": "2026-08-30",
+      "revenue": {
+        "value": 303154000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "display": "$303,154.0 million"
+      },
+      "net_income": {
+        "value": 9226000000,
+        "tag": "NetIncomeLoss",
+        "display": "$9,226.0 million"
+      },
+      "operating_cash_flow": {
+        "value": 15817000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "display": "$15,817.0 million"
+      },
+      "capital_spending": {
+        "value": 6435000000,
+        "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "display": "$6,435.0 million"
+      },
+      "equity": {
+        "value": 35803000000,
+        "tag": "StockholdersEquity",
+        "display": "$35,803.0 million"
+      },
+      "roe": {
+        "value": 0.25768790324833113,
+        "display": "25.8%"
+      },
+      "owner_earnings": {
+        "value": 9382000000,
+        "display": "$9,382.0 million"
+      }
+    }
+  ],
+  "checks": {
+    "roe_at_least_15_percent_every_year": "pass",
+    "owner_earnings_positive_every_year": "pass",
+    "owner_earnings_grew_first_to_last": "pass"
+  },
+  "report": "COST owner-earnings facts (SEC EDGAR, 10-K only)\nCIK: 0000909832 | Company: COSTCO WHOLESALE CORP /NEW\nAll dollar values are $ millions. 'not found' is not an estimate.\n\nFiscal year ended 2022-08-28\n  Revenue: $226,954.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $5,844.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $7,392.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $3,891.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Equity: $20,642.0 million | XBRL tag: StockholdersEquity\n  ROE: 28.3% | Net income / year-end equity\n  Owner earnings: $3,501.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2023-09-03\n  Revenue: $242,290.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $6,292.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $11,068.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $4,323.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Equity: $25,058.0 million | XBRL tag: StockholdersEquity\n  ROE: 25.1% | Net income / year-end equity\n  Owner earnings: $6,745.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2024-09-01\n  Revenue: $254,453.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $7,367.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $11,339.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $4,710.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Equity: $23,622.0 million | XBRL tag: StockholdersEquity\n  ROE: 31.2% | Net income / year-end equity\n  Owner earnings: $6,629.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2025-08-31\n  Revenue: $275,235.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $8,099.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $13,335.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $5,498.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Equity: $29,164.0 million | XBRL tag: StockholdersEquity\n  ROE: 27.8% | Net income / year-end equity\n  Owner earnings: $7,837.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2026-08-30\n  Revenue: $303,154.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $9,226.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $15,817.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $6,435.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Equity: $35,803.0 million | XBRL tag: StockholdersEquity\n  ROE: 25.8% | Net income / year-end equity\n  Owner earnings: $9,382.0 million | Operating cash flow - capital spending\n\nBuffett business checks:\n  ROE at least 15% every year: pass\n  Owner earnings positive every year: pass\n  Owner earnings grew from first year to last: pass"
+}
