@@ -13,15 +13,15 @@ import streamlit as st
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SKILL_DIR = PROJECT_ROOT / ".codex" / "skills" / "buffett-owner-earnings"
-GRAHAM_SKILL_DIR = PROJECT_ROOT / ".codex" / "skills" / "graham-defensive-investor"
+WOOD_SKILL_DIR = PROJECT_ROOT / ".codex" / "skills" / "wood-disruptive-innovation"
 BURRY_SKILL_DIR = PROJECT_ROOT / ".codex" / "skills" / "burry-cash-and-balance-sheet"
-for skill_dir in [SKILL_DIR, GRAHAM_SKILL_DIR, BURRY_SKILL_DIR]:
+for skill_dir in [SKILL_DIR, WOOD_SKILL_DIR, BURRY_SKILL_DIR]:
     if str(skill_dir) not in sys.path:
         sys.path.insert(0, str(skill_dir))
 
 from buffett_facts import normalize_ticker, run  # noqa: E402
 from burry_cash_balance import run as run_burry  # noqa: E402
-from graham_defensive import run as run_graham  # noqa: E402
+from wood_innovation import run as run_wood  # noqa: E402
 
 
 NUMBER_PATTERN = re.compile(r"(?<![A-Za-z])\$?\(?-?\d[\d,]*(?:\.\d+)?\)?\s*(?:%|million|billion|m|bn)?", re.IGNORECASE)
@@ -138,18 +138,17 @@ def badge(label: str, result: str) -> str:
     )
 
 
-def memo_banner(memo: str) -> str | None:
+def memo_banner(memo: str, checks: dict[str, str]) -> str | None:
     match = re.search(r"\*\*Conclusion:\s*([^*]+)\*\*", memo, re.IGNORECASE)
     if not match:
         return None
     conclusion = match.group(1).strip()
-    lowered = conclusion.lower()
-    if "own" in lowered:
-        background, text = "#DCFCE7", "#166534"
-    elif "pass" in lowered:
+    if "fail" in checks.values():
         background, text = "#FEE2E2", "#991B1B"
-    else:
+    elif "not known" in checks.values():
         background, text = "#FEF3C7", "#92400E"
+    else:
+        background, text = "#DCFCE7", "#166534"
     return (
         f"<div style='background:{background};color:{text};border-radius:12px;padding:20px 24px;"
         f"font-size:28px;font-weight:800;text-transform:uppercase'>Conclusion: {conclusion}</div>"
@@ -165,10 +164,10 @@ def memo_verdict(memo: str) -> str:
     return match.group(1).strip() if match else "memo not found"
 
 
-def panel_checks(buffett: dict, graham: dict, burry: dict) -> pd.DataFrame:
+def panel_checks(buffett: dict, wood: dict, burry: dict) -> pd.DataFrame:
     investors = [
         ("Buffett", buffett["checks"]),
-        ("Graham", graham["checks"]),
+        ("Wood", wood["checks"]),
         ("Burry", burry["checks"]),
     ]
     rows = []
@@ -236,33 +235,34 @@ if analysis:
             st.markdown(badge(label, result), unsafe_allow_html=True)
 
     try:
-        graham = run_graham(analysis["ticker"], PROJECT_ROOT / "output")
+        wood = run_wood(analysis["ticker"], PROJECT_ROOT / "output")
         burry = run_burry(analysis["ticker"], PROJECT_ROOT / "output")
     except (OSError, KeyError, ValueError) as error:
         st.error(f"Panel could not read the saved fact record: {error}")
-        graham = burry = None
+        wood = burry = None
 
-    if graham and burry:
+    if wood and burry:
         memo_paths = {
             "Buffett": PROJECT_ROOT / "memos" / f"{analysis['ticker']}_buffett_memo.md",
-            "Graham": PROJECT_ROOT / "memos" / f"{analysis['ticker']}_graham_memo.md",
+            "Wood": PROJECT_ROOT / "memos" / f"{analysis['ticker']}_wood_memo.md",
             "Burry": PROJECT_ROOT / "memos" / f"{analysis['ticker']}_burry_memo.md",
         }
         memos = {investor: path.read_text(encoding="utf-8") if path.exists() else "" for investor, path in memo_paths.items()}
+        investor_checks = {"Buffett": analysis["checks"], "Wood": wood["checks"], "Burry": burry["checks"]}
         st.subheader("Three-investor panel")
-        st.dataframe(panel_checks(analysis, graham, burry), use_container_width=True, hide_index=True)
+        st.dataframe(panel_checks(analysis, wood, burry), use_container_width=True, hide_index=True)
         verdict_rows = []
-        for investor, investor_analysis in [("Buffett", analysis), ("Graham", graham), ("Burry", burry)]:
+        for investor, investor_analysis in [("Buffett", analysis), ("Wood", wood), ("Burry", burry)]:
             verdict_rows.append({"Investor": investor, "Verdict": memo_verdict(memos[investor]), "Score": check_score(investor_analysis["checks"])})
         st.dataframe(pd.DataFrame(verdict_rows), use_container_width=True, hide_index=True)
 
         st.subheader("Investor memos")
-        for column, investor in zip(st.columns(3), ["Buffett", "Graham", "Burry"]):
+        for column, investor in zip(st.columns(3), ["Buffett", "Wood", "Burry"]):
             with column:
                 st.markdown(f"### {investor}")
                 memo = memos[investor]
                 if memo:
-                    banner = memo_banner(memo)
+                    banner = memo_banner(memo, investor_checks[investor])
                     if banner:
                         st.markdown(banner, unsafe_allow_html=True)
                     st.markdown(memo.replace("$", r"\$"))
@@ -270,10 +270,10 @@ if analysis:
                     st.info(f"No {investor} memo found yet.")
 
         combined_analysis = dict(analysis)
-        combined_analysis["report"] = "\n".join([analysis["report"], graham["report"], burry["report"]])
+        combined_analysis["report"] = "\n".join([analysis["report"], wood["report"], burry["report"]])
         flagged_by_memo = {investor: unprinted_memo_numbers(memo, combined_analysis) for investor, memo in memos.items() if memo}
         flags = [f"{investor}: {', '.join(numbers)}" for investor, numbers in flagged_by_memo.items() if numbers]
         if flags:
             st.error("Unprinted-number flags — " + " | ".join(flags))
         else:
-            st.success("No memo contains a number absent from the combined printed Buffett, Graham, and Burry reports.")
+            st.success("No memo contains a number absent from the combined printed Buffett, Wood, and Burry reports.")

@@ -26,6 +26,11 @@
         "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
         "display": "$3,891.0 million"
       },
+      "research_and_development": {
+        "value": null,
+        "tag": "not found",
+        "display": "not found"
+      },
       "equity": {
         "value": 20642000000,
         "tag": "StockholdersEquity",
@@ -84,6 +89,11 @@
         "value": 4323000000,
         "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
         "display": "$4,323.0 million"
+      },
+      "research_and_development": {
+        "value": null,
+        "tag": "not found",
+        "display": "not found"
       },
       "equity": {
         "value": 25058000000,
@@ -144,6 +154,11 @@
         "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
         "display": "$4,710.0 million"
       },
+      "research_and_development": {
+        "value": null,
+        "tag": "not found",
+        "display": "not found"
+      },
       "equity": {
         "value": 23622000000,
         "tag": "StockholdersEquity",
@@ -202,6 +217,11 @@
         "value": 5498000000,
         "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
         "display": "$5,498.0 million"
+      },
+      "research_and_development": {
+        "value": null,
+        "tag": "not found",
+        "display": "not found"
       },
       "equity": {
         "value": 29164000000,
@@ -262,6 +282,11 @@
         "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
         "display": "$6,435.0 million"
       },
+      "research_and_development": {
+        "value": null,
+        "tag": "not found",
+        "display": "not found"
+      },
       "equity": {
         "value": 35803000000,
         "tag": "StockholdersEquity",
@@ -305,5 +330,5 @@
     "owner_earnings_positive_every_year": "pass",
     "owner_earnings_grew_first_to_last": "pass"
   },
-  "report": "COST owner-earnings facts (SEC EDGAR, 10-K only)\nCIK: 0000909832 | Company: COSTCO WHOLESALE CORP /NEW\nAll dollar values are $ millions. 'not found' is not an estimate.\n\nFiscal year ended 2022-08-28\n  Revenue: $226,954.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $5,844.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $7,392.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $3,891.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Equity: $20,642.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $43,519.0 million | XBRL tag: Liabilities\n  Current assets: $32,696.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $31,998.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 28.3% | Net income / year-end equity\n  Current ratio: 1.02x | Current assets / current liabilities\n  Liabilities / equity: 2.11x | Liabilities / year-end equity\n  Owner earnings: $3,501.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2023-09-03\n  Revenue: $242,290.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $6,292.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $11,068.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $4,323.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Equity: $25,058.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $43,936.0 million | XBRL tag: Liabilities\n  Current assets: $35,879.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $33,583.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 25.1% | Net income / year-end equity\n  Current ratio: 1.07x | Current assets / current liabilities\n  Liabilities / equity: 1.75x | Liabilities / year-end equity\n  Owner earnings: $6,745.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2024-09-01\n  Revenue: $254,453.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $7,367.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $11,339.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $4,710.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Equity: $23,622.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $46,209.0 million | XBRL tag: Liabilities\n  Current assets: $34,246.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $35,464.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 31.2% | Net income / year-end equity\n  Current ratio: 0.97x | Current assets / current liabilities\n  Liabilities / equity: 1.96x | Liabilities / year-end equity\n  Owner earnings: $6,629.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2025-08-31\n  Revenue: $275,235.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $8,099.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $13,335.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $5,498.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Equity: $29,164.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $47,935.0 million | XBRL tag: Liabilities\n  Current assets: $38,380.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $37,108.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 27.8% | Net income / year-end equity\n  Current ratio: 1.03x | Current assets / current liabilities\n  Liabilities / equity: 1.64x | Liabilities / year-end equity\n  Owner earnings: $7,837.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2026-08-30\n  Revenue: $303,154.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $9,226.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $15,817.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $6,435.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Equity: $35,803.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $53,242.0 million | XBRL tag: Liabilities\n  Current assets: $46,582.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $43,952.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 25.8% | Net income / year-end equity\n  Current ratio: 1.06x | Current assets / current liabilities\n  Liabilities / equity: 1.49x | Liabilities / year-end equity\n  Owner earnings: $9,382.0 million | Operating cash flow - capital spending\n\nBuffett business checks:\n  ROE at least 15% every year: pass\n  Owner earnings positive every year: pass\n  Owner earnings grew from first year to last: pass"
+  "report": "COST owner-earnings facts (SEC EDGAR, 10-K only)\nCIK: 0000909832 | Company: COSTCO WHOLESALE CORP /NEW\nAll dollar values are $ millions. 'not found' is not an estimate.\n\nFiscal year ended 2022-08-28\n  Revenue: $226,954.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $5,844.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $7,392.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $3,891.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Research and development: not found | XBRL tag: not found\n  Equity: $20,642.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $43,519.0 million | XBRL tag: Liabilities\n  Current assets: $32,696.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $31,998.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 28.3% | Net income / year-end equity\n  Current ratio: 1.02x | Current assets / current liabilities\n  Liabilities / equity: 2.11x | Liabilities / year-end equity\n  Owner earnings: $3,501.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2023-09-03\n  Revenue: $242,290.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $6,292.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $11,068.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $4,323.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Research and development: not found | XBRL tag: not found\n  Equity: $25,058.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $43,936.0 million | XBRL tag: Liabilities\n  Current assets: $35,879.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $33,583.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 25.1% | Net income / year-end equity\n  Current ratio: 1.07x | Current assets / current liabilities\n  Liabilities / equity: 1.75x | Liabilities / year-end equity\n  Owner earnings: $6,745.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2024-09-01\n  Revenue: $254,453.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $7,367.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $11,339.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $4,710.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Research and development: not found | XBRL tag: not found\n  Equity: $23,622.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $46,209.0 million | XBRL tag: Liabilities\n  Current assets: $34,246.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $35,464.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 31.2% | Net income / year-end equity\n  Current ratio: 0.97x | Current assets / current liabilities\n  Liabilities / equity: 1.96x | Liabilities / year-end equity\n  Owner earnings: $6,629.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2025-08-31\n  Revenue: $275,235.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $8,099.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $13,335.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $5,498.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Research and development: not found | XBRL tag: not found\n  Equity: $29,164.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $47,935.0 million | XBRL tag: Liabilities\n  Current assets: $38,380.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $37,108.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 27.8% | Net income / year-end equity\n  Current ratio: 1.03x | Current assets / current liabilities\n  Liabilities / equity: 1.64x | Liabilities / year-end equity\n  Owner earnings: $7,837.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2026-08-30\n  Revenue: $303,154.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $9,226.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $15,817.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $6,435.0 million | XBRL tag: PaymentsToAcquirePropertyPlantAndEquipment\n  Research and development: not found | XBRL tag: not found\n  Equity: $35,803.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $53,242.0 million | XBRL tag: Liabilities\n  Current assets: $46,582.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $43,952.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 25.8% | Net income / year-end equity\n  Current ratio: 1.06x | Current assets / current liabilities\n  Liabilities / equity: 1.49x | Liabilities / year-end equity\n  Owner earnings: $9,382.0 million | Operating cash flow - capital spending\n\nBuffett business checks:\n  ROE at least 15% every year: pass\n  Owner earnings positive every year: pass\n  Owner earnings grew from first year to last: pass"
 }
