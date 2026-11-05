@@ -1,0 +1,309 @@
+{
+  "ticker": "NVDA",
+  "cik": "0001045810",
+  "company_name": "NVIDIA CORP",
+  "source": "SEC EDGAR Company Facts; 10-K filings only",
+  "years": [
+    {
+      "fiscal_year_end": "2022-01-30",
+      "revenue": {
+        "value": 26914000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "display": "$26,914.0 million"
+      },
+      "net_income": {
+        "value": 9752000000,
+        "tag": "NetIncomeLoss",
+        "display": "$9,752.0 million"
+      },
+      "operating_cash_flow": {
+        "value": 9108000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "display": "$9,108.0 million"
+      },
+      "capital_spending": {
+        "value": 976000000,
+        "tag": "PaymentsToAcquireProductiveAssets",
+        "display": "$976.0 million"
+      },
+      "equity": {
+        "value": 26612000000,
+        "tag": "StockholdersEquity",
+        "display": "$26,612.0 million"
+      },
+      "liabilities": {
+        "value": 17575000000,
+        "tag": "Liabilities",
+        "display": "$17,575.0 million"
+      },
+      "assets_current": {
+        "value": 28829000000,
+        "tag": "AssetsCurrent",
+        "display": "$28,829.0 million"
+      },
+      "liabilities_current": {
+        "value": 4335000000,
+        "tag": "LiabilitiesCurrent",
+        "display": "$4,335.0 million"
+      },
+      "roe": {
+        "value": 0.3664512250112731,
+        "display": "36.6%"
+      },
+      "current_ratio": {
+        "value": 6.650288350634371,
+        "display": "6.65x"
+      },
+      "liabilities_to_equity": {
+        "value": 0.6604163535247257,
+        "display": "0.66x"
+      },
+      "owner_earnings": {
+        "value": 8132000000,
+        "display": "$8,132.0 million"
+      }
+    },
+    {
+      "fiscal_year_end": "2023-01-29",
+      "revenue": {
+        "value": 26974000000,
+        "tag": "Revenues",
+        "display": "$26,974.0 million"
+      },
+      "net_income": {
+        "value": 4368000000,
+        "tag": "NetIncomeLoss",
+        "display": "$4,368.0 million"
+      },
+      "operating_cash_flow": {
+        "value": 5641000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "display": "$5,641.0 million"
+      },
+      "capital_spending": {
+        "value": 1833000000,
+        "tag": "PaymentsToAcquireProductiveAssets",
+        "display": "$1,833.0 million"
+      },
+      "equity": {
+        "value": 22101000000,
+        "tag": "StockholdersEquity",
+        "display": "$22,101.0 million"
+      },
+      "liabilities": {
+        "value": 19081000000,
+        "tag": "Liabilities",
+        "display": "$19,081.0 million"
+      },
+      "assets_current": {
+        "value": 23073000000,
+        "tag": "AssetsCurrent",
+        "display": "$23,073.0 million"
+      },
+      "liabilities_current": {
+        "value": 6563000000,
+        "tag": "LiabilitiesCurrent",
+        "display": "$6,563.0 million"
+      },
+      "roe": {
+        "value": 0.19763811592235644,
+        "display": "19.8%"
+      },
+      "current_ratio": {
+        "value": 3.515617857687033,
+        "display": "3.52x"
+      },
+      "liabilities_to_equity": {
+        "value": 0.8633545993393964,
+        "display": "0.86x"
+      },
+      "owner_earnings": {
+        "value": 3808000000,
+        "display": "$3,808.0 million"
+      }
+    },
+    {
+      "fiscal_year_end": "2024-01-28",
+      "revenue": {
+        "value": 60922000000,
+        "tag": "Revenues",
+        "display": "$60,922.0 million"
+      },
+      "net_income": {
+        "value": 29760000000,
+        "tag": "NetIncomeLoss",
+        "display": "$29,760.0 million"
+      },
+      "operating_cash_flow": {
+        "value": 28090000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "display": "$28,090.0 million"
+      },
+      "capital_spending": {
+        "value": 1069000000,
+        "tag": "PaymentsToAcquireProductiveAssets",
+        "display": "$1,069.0 million"
+      },
+      "equity": {
+        "value": 42978000000,
+        "tag": "StockholdersEquity",
+        "display": "$42,978.0 million"
+      },
+      "liabilities": {
+        "value": 22750000000,
+        "tag": "Liabilities",
+        "display": "$22,750.0 million"
+      },
+      "assets_current": {
+        "value": 44345000000,
+        "tag": "AssetsCurrent",
+        "display": "$44,345.0 million"
+      },
+      "liabilities_current": {
+        "value": 10631000000,
+        "tag": "LiabilitiesCurrent",
+        "display": "$10,631.0 million"
+      },
+      "roe": {
+        "value": 0.6924472986178976,
+        "display": "69.2%"
+      },
+      "current_ratio": {
+        "value": 4.171291505973097,
+        "display": "4.17x"
+      },
+      "liabilities_to_equity": {
+        "value": 0.529340592861464,
+        "display": "0.53x"
+      },
+      "owner_earnings": {
+        "value": 27021000000,
+        "display": "$27,021.0 million"
+      }
+    },
+    {
+      "fiscal_year_end": "2025-01-26",
+      "revenue": {
+        "value": 130497000000,
+        "tag": "Revenues",
+        "display": "$130,497.0 million"
+      },
+      "net_income": {
+        "value": 72880000000,
+        "tag": "NetIncomeLoss",
+        "display": "$72,880.0 million"
+      },
+      "operating_cash_flow": {
+        "value": 64089000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "display": "$64,089.0 million"
+      },
+      "capital_spending": {
+        "value": 3236000000,
+        "tag": "PaymentsToAcquireProductiveAssets",
+        "display": "$3,236.0 million"
+      },
+      "equity": {
+        "value": 79327000000,
+        "tag": "StockholdersEquity",
+        "display": "$79,327.0 million"
+      },
+      "liabilities": {
+        "value": 32274000000,
+        "tag": "Liabilities",
+        "display": "$32,274.0 million"
+      },
+      "assets_current": {
+        "value": 80126000000,
+        "tag": "AssetsCurrent",
+        "display": "$80,126.0 million"
+      },
+      "liabilities_current": {
+        "value": 18047000000,
+        "tag": "LiabilitiesCurrent",
+        "display": "$18,047.0 million"
+      },
+      "roe": {
+        "value": 0.9187288060811577,
+        "display": "91.9%"
+      },
+      "current_ratio": {
+        "value": 4.439851498864077,
+        "display": "4.44x"
+      },
+      "liabilities_to_equity": {
+        "value": 0.4068476054811098,
+        "display": "0.41x"
+      },
+      "owner_earnings": {
+        "value": 60853000000,
+        "display": "$60,853.0 million"
+      }
+    },
+    {
+      "fiscal_year_end": "2026-01-25",
+      "revenue": {
+        "value": 215938000000,
+        "tag": "Revenues",
+        "display": "$215,938.0 million"
+      },
+      "net_income": {
+        "value": 120067000000,
+        "tag": "NetIncomeLoss",
+        "display": "$120,067.0 million"
+      },
+      "operating_cash_flow": {
+        "value": 102718000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "display": "$102,718.0 million"
+      },
+      "capital_spending": {
+        "value": 6042000000,
+        "tag": "PaymentsToAcquireProductiveAssets",
+        "display": "$6,042.0 million"
+      },
+      "equity": {
+        "value": 157293000000,
+        "tag": "StockholdersEquity",
+        "display": "$157,293.0 million"
+      },
+      "liabilities": {
+        "value": 49510000000,
+        "tag": "Liabilities",
+        "display": "$49,510.0 million"
+      },
+      "assets_current": {
+        "value": 125605000000,
+        "tag": "AssetsCurrent",
+        "display": "$125,605.0 million"
+      },
+      "liabilities_current": {
+        "value": 32163000000,
+        "tag": "LiabilitiesCurrent",
+        "display": "$32,163.0 million"
+      },
+      "roe": {
+        "value": 0.7633333969089534,
+        "display": "76.3%"
+      },
+      "current_ratio": {
+        "value": 3.905263812455306,
+        "display": "3.91x"
+      },
+      "liabilities_to_equity": {
+        "value": 0.3147628947251308,
+        "display": "0.31x"
+      },
+      "owner_earnings": {
+        "value": 96676000000,
+        "display": "$96,676.0 million"
+      }
+    }
+  ],
+  "checks": {
+    "roe_at_least_15_percent_every_year": "pass",
+    "owner_earnings_positive_every_year": "pass",
+    "owner_earnings_grew_first_to_last": "pass"
+  },
+  "report": "NVDA owner-earnings facts (SEC EDGAR, 10-K only)\nCIK: 0001045810 | Company: NVIDIA CORP\nAll dollar values are $ millions. 'not found' is not an estimate.\n\nFiscal year ended 2022-01-30\n  Revenue: $26,914.0 million | XBRL tag: RevenueFromContractWithCustomerExcludingAssessedTax\n  Net income: $9,752.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $9,108.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $976.0 million | XBRL tag: PaymentsToAcquireProductiveAssets\n  Equity: $26,612.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $17,575.0 million | XBRL tag: Liabilities\n  Current assets: $28,829.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $4,335.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 36.6% | Net income / year-end equity\n  Current ratio: 6.65x | Current assets / current liabilities\n  Liabilities / equity: 0.66x | Liabilities / year-end equity\n  Owner earnings: $8,132.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2023-01-29\n  Revenue: $26,974.0 million | XBRL tag: Revenues\n  Net income: $4,368.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $5,641.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $1,833.0 million | XBRL tag: PaymentsToAcquireProductiveAssets\n  Equity: $22,101.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $19,081.0 million | XBRL tag: Liabilities\n  Current assets: $23,073.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $6,563.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 19.8% | Net income / year-end equity\n  Current ratio: 3.52x | Current assets / current liabilities\n  Liabilities / equity: 0.86x | Liabilities / year-end equity\n  Owner earnings: $3,808.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2024-01-28\n  Revenue: $60,922.0 million | XBRL tag: Revenues\n  Net income: $29,760.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $28,090.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $1,069.0 million | XBRL tag: PaymentsToAcquireProductiveAssets\n  Equity: $42,978.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $22,750.0 million | XBRL tag: Liabilities\n  Current assets: $44,345.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $10,631.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 69.2% | Net income / year-end equity\n  Current ratio: 4.17x | Current assets / current liabilities\n  Liabilities / equity: 0.53x | Liabilities / year-end equity\n  Owner earnings: $27,021.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2025-01-26\n  Revenue: $130,497.0 million | XBRL tag: Revenues\n  Net income: $72,880.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $64,089.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $3,236.0 million | XBRL tag: PaymentsToAcquireProductiveAssets\n  Equity: $79,327.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $32,274.0 million | XBRL tag: Liabilities\n  Current assets: $80,126.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $18,047.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 91.9% | Net income / year-end equity\n  Current ratio: 4.44x | Current assets / current liabilities\n  Liabilities / equity: 0.41x | Liabilities / year-end equity\n  Owner earnings: $60,853.0 million | Operating cash flow - capital spending\n\nFiscal year ended 2026-01-25\n  Revenue: $215,938.0 million | XBRL tag: Revenues\n  Net income: $120,067.0 million | XBRL tag: NetIncomeLoss\n  Operating cash flow: $102,718.0 million | XBRL tag: NetCashProvidedByUsedInOperatingActivities\n  Capital spending: $6,042.0 million | XBRL tag: PaymentsToAcquireProductiveAssets\n  Equity: $157,293.0 million | XBRL tag: StockholdersEquity\n  Liabilities: $49,510.0 million | XBRL tag: Liabilities\n  Current assets: $125,605.0 million | XBRL tag: AssetsCurrent\n  Current liabilities: $32,163.0 million | XBRL tag: LiabilitiesCurrent\n  ROE: 76.3% | Net income / year-end equity\n  Current ratio: 3.91x | Current assets / current liabilities\n  Liabilities / equity: 0.31x | Liabilities / year-end equity\n  Owner earnings: $96,676.0 million | Operating cash flow - capital spending\n\nBuffett business checks:\n  ROE at least 15% every year: pass\n  Owner earnings positive every year: pass\n  Owner earnings grew from first year to last: pass"
+}

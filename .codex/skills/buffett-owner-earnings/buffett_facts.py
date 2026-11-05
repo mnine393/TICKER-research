@@ -29,7 +29,11 @@ METRICS = {
         "PaymentsToAcquireProductiveAssets",
     ],
     "equity": ["StockholdersEquity"],
+    "liabilities": ["Liabilities"],
+    "assets_current": ["AssetsCurrent"],
+    "liabilities_current": ["LiabilitiesCurrent"],
 }
+INSTANT_METRICS = {"equity", "liabilities", "assets_current", "liabilities_current"}
 
 
 def fetch_json(url: str) -> dict:
@@ -89,7 +93,7 @@ def metric_candidates(company_facts: dict, metric: str) -> dict[str, dict]:
     """Select the stated tag priority, with latest filing winning within a period."""
     us_gaap = company_facts.get("facts", {}).get("us-gaap", {})
     selected: dict[str, dict] = {}
-    selector = _instant_values if metric == "equity" else _annual_values
+    selector = _instant_values if metric in INSTANT_METRICS else _annual_values
     for tag in METRICS[metric]:
         fact = us_gaap.get(tag)
         if not fact:
@@ -142,6 +146,21 @@ def build_analysis(ticker: str) -> dict:
             roe = net_income / equity
             row["roe"] = {"value": roe, "display": f"{roe:.1%}"}
 
+        assets_current = row["assets_current"]["value"]
+        liabilities_current = row["liabilities_current"]["value"]
+        if assets_current is None or liabilities_current is None or liabilities_current == 0:
+            row["current_ratio"] = {"value": None, "display": "not known"}
+        else:
+            current_ratio = assets_current / liabilities_current
+            row["current_ratio"] = {"value": current_ratio, "display": f"{current_ratio:.2f}x"}
+
+        liabilities = row["liabilities"]["value"]
+        if liabilities is None or equity is None or equity <= 0:
+            row["liabilities_to_equity"] = {"value": None, "display": "not known"}
+        else:
+            liabilities_to_equity = liabilities / equity
+            row["liabilities_to_equity"] = {"value": liabilities_to_equity, "display": f"{liabilities_to_equity:.2f}x"}
+
         operating_cash_flow = row["operating_cash_flow"]["value"]
         capital_spending = row["capital_spending"]["value"]
         if operating_cash_flow is None or capital_spending is None:
@@ -193,10 +212,15 @@ def format_report(analysis: dict) -> str:
             ("operating_cash_flow", "Operating cash flow"),
             ("capital_spending", "Capital spending"),
             ("equity", "Equity"),
+            ("liabilities", "Liabilities"),
+            ("assets_current", "Current assets"),
+            ("liabilities_current", "Current liabilities"),
         ]:
             item = row[key]
             lines.append(f"  {label}: {item['display']} | XBRL tag: {item['tag']}")
         lines.append(f"  ROE: {row['roe']['display']} | Net income / year-end equity")
+        lines.append(f"  Current ratio: {row['current_ratio']['display']} | Current assets / current liabilities")
+        lines.append(f"  Liabilities / equity: {row['liabilities_to_equity']['display']} | Liabilities / year-end equity")
         lines.append(f"  Owner earnings: {row['owner_earnings']['display']} | Operating cash flow - capital spending")
         lines.append("")
     lines.extend(
