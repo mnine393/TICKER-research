@@ -52,3 +52,4 @@
 | 2026-11-05 | Codex + GPT-5 | Applied the Wood innovation skill to COST and NVDA | Corrected the panel's Wood label and wrote two price-free Wood memos from the printed results without rerunning the script. |  |
 | 2026-11-05 | Codex + GPT-5 | Updated Lab 19 for the Wood panel | Made Wood's displayed thresholds dynamic and replaced Graham with Wood in the Lab 19 facts, probes, gaps, links, and bug record while preserving the student's four writing sections. |  |
 | 2026-11-05 | Codex + GPT-5 | Fixed panel memo-banner colors | Made each memo banner use its investor's check results: green for all passes, red for any failure, and yellow for an unknown result without a failure. |  |
+| 2026-11-05 | Codex + GPT-5 | Redesigned the investor-panel viewer | Added a dark Streamlit theme, sidebar controls, hero header, tabbed layout, polished charts, scorecards, memo cards, and a full tagged fact table without changing the underlying data or checks. |  |
