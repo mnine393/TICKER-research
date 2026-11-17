@@ -17,12 +17,12 @@ Could a committee member who has never met you reach your decision from your rep
 
 | Item | Ready? |
 |---|---|
-| A teammate can move one control in the app's sidebar and read the mandate verdict. |  |
-| The readme has the one command that produces the result. |  |
-| The decision numbers are readable on GitHub without running anything in `output/visible_output.md`. |  |
-| `docs/decision-memo.md` matches the output's numbers, dates, and conditions. |  |
-| `docs/validation-and-ai-use.md` covers the baseline, mandate check, stress run, and Locked Changed-Input Record. |  |
-| Videos 1 through 3 and their transcripts have working links. |  |
+| A teammate can move one control in the app's sidebar and read the mandate verdict. | Yes (the trading cost control, used in section 4) |
+| The readme has the one command that produces the result. | Yes (install, then `python -m streamlit run app.py`) |
+| The decision numbers are readable on GitHub without running anything in `output/visible_output.md`. | Yes |
+| `docs/decision-memo.md` matches the output's numbers, dates, and conditions. | No, not written yet (unresolved) |
+| `docs/validation-and-ai-use.md` covers the baseline, mandate check, stress run, and Locked Changed-Input Record. | Partly: the locked prediction is on GitHub; the full record is drafted but not pushed yet (unresolved) |
+| Videos 1 through 3 and their transcripts have working links. | No, not recorded yet (unresolved) |
 
 ## 3. Cold run, written by my partner
 
@@ -51,10 +51,10 @@ The input I am changing is the trading cost charged in the point-in-time backtes
 
 | Measure | Before | After |
 |---|---:|---:|
-| Constrained portfolio's backtest ending value | $134,296,207 |  |
-| Constrained portfolio's return per year | 4.76% |  |
-| 60/40 benchmark's ending value | $200,614,136 |  |
-| Stop condition | triggered |  |
+| Constrained portfolio's backtest ending value | $134,296,207 | $129,925,479 |
+| Constrained portfolio's return per year | 4.76% | 4.58% |
+| 60/40 benchmark's ending value | $200,614,136 | $200,095,126 |
+| Stop condition | triggered | triggered |
 
 *My predicted direction for the ending value:* "ends with less money"
 
@@ -67,11 +67,12 @@ The input I am changing is the trading cost charged in the point-in-time backtes
 
 ### After the run
 
-*What happened:*
+*What happened:* "it lost more money because it trades a lot"
 
-*Did the decision change?*
+*Did the decision change?* "decision stays reject"
 
-*Why my prediction matched or did not:*
+*Why my prediction matched or did not:* The direction matched: it ended with less money. I predicted my decision would
+change, but "it just confirmed what I already decided."
 
 ### How to run it
 
@@ -83,9 +84,9 @@ to read the new numbers. Set it back to 10 to see the original.
 
 The decision numbers come from `backtest.py`, in the `run_backtest` function. Each month it chooses the mix from data known that day, holds it for the next month, charges trading costs on turnover, and pays the quarterly payout.
 
-*My partner's question:*
+*Practice question (no partner notes were recorded):* How do you know the backtest did not use future data?
 
-*My answer:*
+*My answer:* Each month, run_backtest only uses the returns up to that month to pick the mix, then it holds that mix for the next month and sees what actually happened.
 
 ## 6. Fix one thing
 
@@ -95,13 +96,13 @@ Commit of the fix: [`108e075`](https://github.com/mnine393/FIN439-Project2/commi
 
 ## 7. Decision line
 
-*Write adopt / allocate to / rebalance / pilot / reject, plus the condition that would reverse it:*
+**Reject.** I would reconsider if the optimizer beat the 60/40 benchmark in the backtest and stopped changing its mix so much when the data changes.
 
 ## 8. Reflect
 
-*What the cold run found that I could not see:*
+*What the cold run found that I could not see:* The Stress tab crashed on a fresh copy of my repository. I never saw it on my own computer because I had already fixed it there but had not pushed the fix.
 
-*What I will not touch before the deadline:*
+*What I will not touch before the deadline:* The graded four-fund run and my locked prediction, so my results stay the same.
 
 ## 9. Checkout
 
