@@ -56,13 +56,14 @@ The input I am changing is the trading cost charged in the point-in-time backtes
 | 60/40 benchmark's ending value | $200,614,136 |  |
 | Stop condition | triggered |  |
 
-*My predicted direction for the ending value:*
+*My predicted direction for the ending value:* "ends with less money"
 
-*My predicted direction for the gap to the 60/40 benchmark:*
+*My predicted direction for the gap to the 60/40 benchmark:* not predicted
 
-*Do I predict my decision changes?*
+*Do I predict my decision changes?* "i think yes it would change the amount i would change and reccommend it"
 
-*Time and commit of my prediction:*
+*Time and commit of my prediction:* Written by me without AI and pushed before the run, 2026-11-17 (see the commit
+"Lab 20: my prediction (pre-run)" in this repository's history).
 
 ### After the run
 
